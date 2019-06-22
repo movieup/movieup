@@ -1,0 +1,15 @@
+[gmail]
+MailAddress = ""
+ClientID = ""
+ClientSecret = ""
+AccessToken = ""
+RefreshToken = ""
+
+[DB]
+user = ""
+password = ""
+protocol = ""    #tcp(##.###.##.###:3306)
+dbname = ""
+
+[etc]
+srcPath = ""
