@@ -1,0 +1,42 @@
+{{define "title"}}当サイトについて | MOViE UP{{end}}
+{{define "description"}}英語学習中の方、また自身の学習ために映画のワンシーン翻訳を記事として載せています。映画としても英語学習としてもおすすめのものを厳選して載せていす。楽しく英語学習する材料にお使いください。{{end}}
+
+ {{define "content"}}
+ 	<!-- サイトメッセージ -->
+ 	<div id="site_message" class="site_message_main_wrapper">
+ 		<transition name="fade">
+ 			<article v-if="show" class="site_message_main">
+ 				<h4>MOViE UP</h4>
+ 				<div class="site_message_main_img">
+ 					<img src="/resources/images/icon_reverse_black.svg" />
+ 				</div>
+ 				<h3 style="position: relative;">映画｜翻訳</h3>
+ 				<p>
+ 					自身の英語学習のために翻訳した映画のワンシーンを記事として載せています<br>
+ 					たくさんの人に楽しく英語学習が出来る材料となれば幸いです
+ 				</p>
+ 			</article>
+ 		</transition>
+ 	</div>
+
+ 	<!-- メインコンテンツ -->
+ 	<main>
+        <div class="about">
+            <div class="h2_wrapper"><h2>当サイトのコンテンツについて</h2></div>
+            <div class="about_content">
+                <P>
+                    当サイト ( MOViE UP ) は管理人自身の英語学習のために映画のワンシーンの翻訳を記事として掲載しておりますので、<br>
+                    同じように映画好きで英語を勉強中の方にとって参考になればと思います。<br>
+                    翻訳には注意を払っておりますが、英語勉強中の管理人が翻訳しているので誤っていたりニュアンスがおかしな箇所があるかもしれません。<br>
+                    英語学習にもってこいの映画や、単純におすすめの映画がありましたらお問い合わせよりご連絡いただけますと嬉しい限りです！
+                </p>
+            </div>
+        </div>
+
+        <div class="hr_footer"><hr/></div>
+ 	</main>
+{{end}}
+
+{{define "script_prebody"}}
+    <script src="/resources/js/siteMessage.js"></script>
+{{end}}

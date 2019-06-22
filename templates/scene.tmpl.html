@@ -1,0 +1,85 @@
+{{define "title"}}映画「{{ .movie.TitleJp }}」 シーン翻訳 | MOViE UP{{end}}
+{{define "description"}}映画「{{ .movie.TitleJp }}」のシーン翻訳。{{ .scene.Description }}{{end}}
+
+ {{define "content"}}
+
+ 	{{/* メインコンテンツ */}}
+ 	<main>
+        {{/* タグ */}}
+        <div class="tags">
+            <div class="tag_wrapper">
+                {{ range $sceneTag := .sceneTags }}
+                    <a href="#">{{ $sceneTag.Tag.Name }}</a>
+                {{ end }}
+            </div>
+        </div>
+        <div class="scene_contents_wrapper_outer">
+            <div class="scene_contents_wrapper_inner">
+                {{/* 概要 */}}
+                <div id="tabs" class="overview_wrapper">
+                    <div class="overview_movie_title">
+                        <div class="article_movie_title"><img src="/resources/images/icon_jp.svg"> <span>{{ .movie.TitleJp }}</span></div>
+                        <div class="article_movie_title"><img src="/resources/images/icon_en.svg"> <span>{{ .movie.TitleEn }}</span></div>
+                    </div>
+                    <ul>
+                        <li class="overview_tab" @click="clickTab(1)" v-bind:class="{ 'isActiveTab' : (activeTabNumber !== 0), 'active_overview_tab_li': (activeTabNumber === 1) }">映画概要<i class="fas fa-angle-down"></i></li>
+                        <li class="overview_tab" @click="clickTab(2)" v-bind:class="{ 'isActiveTab' : (activeTabNumber !== 0), 'active_overview_tab_li': (activeTabNumber === 2) }">シーン概要<i class="fas fa-angle-down"></i></li>
+                    </ul>
+                    <div>
+                        <p class="tab_overview" v-if="activeTabNumber === 1">{{ .movie.Description }}</P>
+                        <p class="tab_overview" v-else-if="activeTabNumber === 2">{{ .scene.Description }}</P>
+                    </div>
+                </div>
+
+                <div class="hr_footer"><hr/></div>
+
+                {{/* シーン翻訳 */}}
+                <div class="h2_wrapper h2_scene"><h2>シーン翻訳</h2></div>
+                <div class="scene_wrapper">
+                    {{ $sceneDetailLengthMax := (len .sceneDetails) }}
+                    {{ range $index, $sceneDetail := .sceneDetails }}
+                        {{ if ne $sceneDetail.Quote "" }}
+                            {{/* セリフ */}}
+                            <div class="scene_line">
+                                <blockquote class="blockquote">
+                                    <p><span class="character">{{ $sceneDetail.CharacterName }}:</span>{{ $sceneDetail.Quote }}</p>
+                                </blockquote>
+                                <div class="translation_line">
+                                    <p>{{ $sceneDetail.Translated }}</p>
+                                </div>
+                            </div>
+                        {{ else }}
+                            {{/* セリフ以外のアクション */}}
+                            <div class="scene_line_action">
+                                <p>{{ $sceneDetail.Action }}</p>
+                            </div>
+                        {{ end }}
+                        {{/* 区切りの白い縦棒（最後のループ以外は表示） */}}
+                        {{/* if isLast $index .sceneDetails */}}
+                            <div class="scene_line_delimiter"></div>
+                        {{/* end */}}
+                    {{ end }}
+
+                </div>
+
+                {{ if ne .scene.Memo "" }}
+                    <div class="hr_footer"><hr/></div>
+
+                    {{/* ちょこっとメモ(あれば表示) */}}
+                    <div class="h2_wrapper h2_scene"><h2>ちょこっとメモ</h2></div>
+                    <div class="scene_memo">
+                        <p>{{ .scene.Memo }}</p>
+                    </div>
+                {{ end }}
+            </div>
+        </div>
+
+        <div class="hr_footer"><hr/></div>
+ 	</main>
+{{end}}
+
+{{define "script_prebody"}}
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+
+    <script src="/resources/js/scene.js"></script>
+{{end}}

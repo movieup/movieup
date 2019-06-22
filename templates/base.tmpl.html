@@ -1,0 +1,86 @@
+<!doctype html>
+
+<html class="no-js" lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="description" content="説明文">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="{{template "description" .}}" />
+
+        <link rel="icon" href="/resources/images/favicon.ico">
+
+        <title>{{template "title" .}}</title>
+
+        <link rel="manifest" href="site.webmanifest">
+		<link rel="apple-touch-icon" href="icon.png">
+        <!-- 共通のCSSなど -->
+        <link rel="stylesheet" href="/resources/css/main.css">
+
+		<!-- TODO：最後にminにする？ -->
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+<body>
+    <header id="header">
+        <div class="hamburger_wrap">
+            <a href="/">
+                <img src="/resources/images/logo.svg" class="logo" />
+            </a>
+            <input id="hamburger_menu" type="checkbox" name="hamburger_menu" class="hamburger_menu_check"/>
+            <label id="hamburger_btn" for="hamburger_menu" class="hamburger_btn"></label>
+            <nav class="hamburger_menu_wrap">
+                <ul class="hamburger_list">
+                    <li><p><a href="/">新着一覧</a></p></li>
+                    <li><p><a href="#">英語初心者向けシーン翻訳</a></p></li>
+                    <li><p><a href="/about/site/">当サイトについて</a></p></li>
+                    <li><p><a href="/about/technology/">サイト構成(技術)</a></p></li>
+                    <li><p><a href="/inquiry/">お問い合わせ</a></p></li>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- ハンバーガーメニュー押下時のオーバーレイ -->
+        <div id="hamburger_overlay" class="hamburger_overlay" v-if="isShownMenu" v-on:click="clickHamburgerOverlay"></div>
+
+    </header>
+
+	<!-- 背景イメージ -->
+	<div class="top_image_area">
+		<div class="top_area_wrapper">
+			<div class="site_message">
+				<p>Learn English</p>
+				<p>with movies</p>
+			</div>
+		</div>
+	</div>
+	<!-- フィルム -->
+	<div class="film_separator">
+	</div>
+
+    {{template "content" .}}
+
+	<footer>
+		<h3>記事カテゴリ一覧</h3>
+		<div class="footer_category_list_wrapper">
+			<ul class="footer_category_list">
+                {{ range $tag := .tags }}
+                    <li><p><a href="/tags/{{ $tag.TagId }}/">{{ $tag.Name }}</a></P></li>
+                {{ end }}
+			</ul>
+		</div>
+		<hr class="footer_hr_copyright"/>
+		<p class="footer_copyright">© yoshida All Rights Reserved.</p>
+	</footer>
+
+	<!-- Google Analytics: UA-XXXXX-YをあなたのIDに変更 -->
+	<script>
+		window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
+		ga('create','UA-XXXXX-Y','auto');ga('send','pageview')
+	</script>
+	<script src="https://www.google-analytics.com/analytics.js" async defer></script>
+
+    <script src="/resources/js/common.js"></script>
+    {{template "script_prebody" .}}
+
+</body>
+</html>

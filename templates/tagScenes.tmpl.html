@@ -1,0 +1,91 @@
+{{define "title"}}{{ .tag.Name }}の翻訳シーン一覧 | MOViE UP{{end}}
+{{define "description"}}「{{ .tag.Name }}」タグが付く翻訳シーンの一覧です。楽しく英語学習する材料にお使いください。{{end}}
+
+ {{define "content"}}
+ 	<!-- サイトメッセージ -->
+ 	<div id="site_message" class="site_message_main_wrapper">
+ 		<transition name="fade">
+ 			<article v-if="show" class="site_message_main">
+ 				<h4>MOViE UP</h4>
+ 				<div class="site_message_main_img">
+ 					<img src="/resources/images/icon_reverse_black.svg" />
+ 				</div>
+ 				<h3 style="position: relative;">映画｜翻訳</h3>
+ 				<p>
+ 					自身の英語学習のために翻訳した映画のワンシーンを記事として載せています<br>
+ 					たくさんの人に楽しく英語学習が出来る材料となれば幸いです
+ 				</p>
+ 			</article>
+ 		</transition>
+ 	</div>
+
+ 	<!-- メインコンテンツ -->
+ 	<main>
+ 		<!-- 記事一覧 -->
+ 		<div id="news" class="top_news">
+ 			<div class="h2_wrapper"><h2>「{{ .tag.Name }}」の翻訳シーン一覧</h2></div>
+ 			<div class="article_list_wrapper">
+ 				<div class="article_list">
+                    <!-- 記事 -->
+                    <div class="article" v-for="scene in scenes">
+                        <!-- おすすめ度｜投稿日 -->
+                        <div class="article_top">
+                            <div class="article_evaluation">
+                                <p class="article_evaluation_title">
+                                    初心者おすすめ度
+                                </p>
+                                <p class="article_evaluation_values">
+                                    @{ scene.recommenddedNumber }
+                                </p>
+                            </div>
+                            <div class="article_date_posted">
+                                @{ scene.createdAt }
+                            </div>
+                        </div>
+                        <!-- title(jp) -->
+                        <div class="article_movie_title">
+                            <img src="/resources/images/icon_jp.svg" />
+                            <span>@{ scene.titleJp }</span>
+                        </div>
+                        <!-- title(en) -->
+                        <div class="article_movie_title">
+                            <img src="/resources/images/icon_en.svg" />
+                            <span>@{ scene.titleEn }</span>
+                        </div>
+                        <!-- description -->
+                        <span class="article_movie_description">
+                            @{ scene.description }
+                        </span>
+                    </div>
+ 				</div>
+ 			</div>
+ 		</div>
+
+        <div class="hr_footer"><hr/></div>
+ 	</main>
+{{end}}
+
+{{define "script_prebody"}}
+    <script src="/resources/js/tagScenes.js"></script>
+    <script src="/resources/js/siteMessage.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        {{ $fiveList := .fiveList }}
+        vueNews.scenes = [
+            {{ range $scene := .scenes }}
+                {
+                    // 作成日
+                    createdAt: "{{ $scene.GetFormattedCreatedAt }}",
+                    // 初心者おすすめ度
+                    recommenddedNumber: "{{ range $number := $fiveList }}{{ if ge $scene.RecommendedNumber $number }}★{{ else }}☆{{ end }}{{ end }}",
+                    // タイトル（日本語）
+                    titleJp: "{{ $scene.Movie.TitleJp }}",
+                    // タイトル（英語）
+                    titleEn: "{{ $scene.Movie.TitleEn }}",
+                    // シーン説明
+                    description: "{{ $scene.Description }}",
+                },
+            {{ end }}
+        ];
+    </script>
+{{end}}

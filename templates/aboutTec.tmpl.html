@@ -1,0 +1,242 @@
+{{define "title"}}当サイトについて(技術) | MOViE UP{{end}}
+{{define "description"}}英語学習中の方、また自身の学習ために映画のワンシーン翻訳を記事として載せています。映画としても英語学習としてもおすすめのものを厳選して載せていす。楽しく英語学習する材料にお使いください。{{end}}
+
+ {{define "content"}}
+ 	<!-- サイトメッセージ -->
+ 	<div id="site_message" class="site_message_main_wrapper">
+ 		<transition name="fade">
+ 			<article v-if="show" class="site_message_main">
+ 				<h4>MOViE UP</h4>
+ 				<div class="site_message_main_img">
+ 					<img src="/resources/images/icon_reverse_black.svg" />
+ 				</div>
+ 				<h3 style="position: relative;">映画｜翻訳</h3>
+ 				<p>
+ 					自身の英語学習のために翻訳した映画のワンシーンを記事として載せています<br>
+ 					たくさんの人に楽しく英語学習が出来る材料となれば幸いです
+ 				</p>
+ 			</article>
+ 		</transition>
+ 	</div>
+
+ 	<!-- メインコンテンツ -->
+ 	<main>
+        <div class="about">
+            <div class="about_content">
+                <P>
+                    当サイトは管理人がエンジニアとしての学習も兼ねて作成しております。<br>
+                    当サイトを構成する技術についていくつかご紹介させていただきます。
+                </p>
+            </div>
+
+            <div class="h2_wrapper"><h2>サーバサイド</h2></div>
+            <div class="about_content">
+                <P>
+                    使用技術<br>
+                    - go言語<br>
+                    - gin（ go言語用のWebアプリ用フレームワーク<br>
+                    - gorm ( go言語用のORマッパー )<br>
+                    - docker（開発中）<br>
+                    - mysql<br>
+                    go言語 x gin x gormでサーバサイドを実装しました。<br>
+                    いくつかサンプルを載せておきますので、同じ構成で実装する方のサンプルとなれば幸いです。<br>
+                    <br>
+                    まずはginを使ったルーティングです。<br>
+                    テンプレートはgo言語の標準テンプレートを使います。
+                </p>
+                <div class="about_content_src">
+                    <pre><code>
+【main.go】
+    router.GET("/", func(context *gin.Context) {
+        // HTMLを返却するリクエストなので使用するテンプレートを設定
+        // base.templ.html ⇨ 全てのテンプレートの親となるベースのテンプレート
+        // index.templ.html ⇨ 表示対象画面のテンプレート
+        html := template.Must(template.ParseFiles("docker/golang/templates/base.tmpl.html", "docker/golang/templates/index.tmpl.html"))
+        router.SetHTMLTemplate(html)
+
+        // ごにょごにょ処理する
+        content := "こんてんつ"
+
+        // HTMLを返却
+        // gin.H{}内にtemplateで使用する変数を設定
+        context.HTML(http.StatusOK, "base.tmpl.html", gin.H{ "content": content })
+    })
+
+【base.tmpl.html】
+    &lt;!-- 親のテンプレートにはtemplateタグで子への埋め込み設定を指定 --&gt;
+    &lt;body&gt;
+        &#123;&#123;template "body" .&#125;&#125;
+    &lt;/body&gt;
+
+【index.tmpl.html】
+    &lt;!-- 子のテンプレートで埋め込みタグに実値を注入（指定しないとgo起動時エラーとなるため注意） --&gt;
+    &#123;&#123;define "body"&#125;&#125;
+        &lt;p&gt;
+            &#123;&#123; .content &#125;&#125;
+        &lt;/p&gt;
+    &#123;&#123;end&#125;&#125;
+                    </code></pre>
+                </div>
+                <p>
+                    次にgormを使用したDB接続周りです。
+                </p>
+                <div class="about_content_src">
+                    <pre><code>
+【main.go】
+    // USER、PASSWORD、PROTOCOL、DBNAMEを接続先のDBに合わせて指定
+    CONNECT_STR := USER + ":" + PASSWORD + "@" + PROTOCOL + "/" + DBNAME
+    // DB接続。parseTime=trueをつけることでstructで受ける時time.Timeを使用可能となる
+    // errを使ってエラーハンドリングしたり
+    db,err := gorm.Open(DBMS, CONNECT_STR + "?parseTime=true")
+
+    // タグ一覧を取得（当サイト画面下に出しているカテゴリってやつです）
+    tags := []Tag{}
+    db.Find(&tags)
+    // db.Find(&tags, "xxxx=?", hoge) とするとwhere句に'xxx = hoge'が指定される
+
+【main.goやら別のファイルやら】
+    // 実際のDB構成です。タグマスタはこうなってます。
+    type Tag struct {
+        TagId       int `gorm:"column:tag_id"`
+        Name        string `gorm:"column:name"`
+        OrderNumber int `gorm:"column:order_number"`
+    }
+    // TableName()を実装してあげるとdb.Find()時にこのテーブルをfrom句で指定してくれるようになる
+    // 実装しないと自動でstructの複数形（tagsテーブル）が指定される
+    func (m *Tag) TableName() string {
+    	return "mst_tag"
+    }
+                    </code></pre>
+                </div>
+            </div>
+
+            <div class="h2_wrapper"><h2>フロントサイド</h2></div>
+            <div class="about_content">
+                <P>
+                    使用技術＆学習内容<br>
+                    - vue.js<br>
+                    - Webサイトデザイン<br>
+                    - レスポンシブデザイン<br>
+                    - レスポンシブデザインコーディング ( CSSフレームワーク無しでの実装 )<br>
+                    - ロゴ作成<br>
+                    <br>
+                    vue.jsは、細かい箇所含めて数カ所使っています。<br>
+                    例えばトップページの「もっと見る」ボタンを押すとajaxを使用して次の記事をサーバから読み込む箇所は、以下のような感じで実装しています。<br>
+                    ( vue.jsのコンポーネントは、コンポーネント化された部分のHTML構成が別ファイルに分割されてデザインコーディングが不便なため使用していません )<br>
+                </p>
+                <div class="about_content_src">
+                    <pre><code>
+【HTML側】
+    // ajaxではaxiosを使用しているので、axios.jsを読み込み
+    &lt;cript src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"&gt;&lt;/script&gt;
+
+    // ここではaタグで実装してます
+    // js側のロジック(getNextArticles)を呼び出し、aタグクリックのライフサイクルをonclick="return false;"で停止しています
+    &lt;a href="#" onclick="return false;" @click="getNextArticles"&gt;もっと見る&lt;/a&gt;
+
+    // v-forで取得した配列を表示
+    // HTML構成は省略してます
+    &lt;div id="hoge">
+        &lt;div v-for="scene in scenes"&gt;
+            &lt;div class="article"&gt;
+                &lt;span>@{ scene.titleJp }&lt;/span&gt;
+                &lt;span>@{ scene.titleEn }&lt;/span&gt;
+                &lt;span>@{ scene.description }&lt;/span&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+【js側】
+    var vueNews = new Vue({
+        el: '#hoge',
+        // go言語のテンプレートでは&#123;&#123;&#125;&#125;を使用するのでHTML側では@{}でデータをバインド出来るように指定しておく
+        delimiters: ['@{', '}'],
+        data: {
+            currentArticlePage: 1,
+            scenes: [],
+        },
+        methods: {
+            getNextArticles: function() {
+                axios
+                    // クエリパラメータで読み込みページを指定
+                    .get('/hoge/hoge/' + (vueNews.currentArticlePage + 1) + '/')
+                        .then(function (response) {
+                            // レスポンス値は記事（シーン）がjsonで配列になってくるので配列をループ処理でdata内のscenesに追加していく
+                            // （いくつかの処理を簡略化してあります）
+                            response.data.scenes.forEach(scene => {
+                                vueNews.scenes.push({
+                                    // タイトル（日本語）
+                                    titleJp: scene.Movie.TitleJp,
+                                    // タイトル（英語）
+                                    titleEn: scene.Movie.TitleEn,
+                                    // シーン説明
+                                    description: scene.Description,
+                                });
+                            });
+                            // ページ数をカウントアップ
+                            vueNews.currentArticlePage++
+                        });
+            },
+        },
+    })
+
+【go言語(サーバ)側】
+    import (
+        "strconv"
+    )
+
+    ...
+
+    // 記事取得API
+    router.GET("/hoge/hoge/:pageNo/", func(context *gin.Context) {
+        // パラメータ（ページ数）取得
+        pageNo, _ := strconv.Atoi(context.Param("pageNo"))
+
+        scenes := []structs.Scene{}
+        // ほにゃほにゃしてシーン一覧をDBより取得
+
+        // jsonでレスポンス返却
+        context.JSON(http.StatusOK, gin.H{ "scenes": scenes })
+    })
+                    </code></pre>
+                </div>
+                <p>
+                    また、レスポンシブデザインはbootstrapでのデザインしか経験がなかったので、全てのデザインコーディングを自分でやってみたくて１から実装しました。<br>
+                    デザイン ( デザイン作成はcacoo ) 作成後の基本的な流れは<br>
+                    1. スマホ用のデザインコーディング<br>
+                    2. タブレット用のデザインコーディング ( 1からタブレット時の画面サイズの時に差分が出る箇所のみ )<br>
+                    3. PC用のデザインコーディング ( 2からPC時の画面サイズの時に差分が出る箇所のみ )<br>
+                    としたので、以下のようにメディアクエリを分けました。<br>
+                </p>
+                <div class="about_content_src">
+                    <pre><code>
+【css】
+    /* まずスマホ用のデザイン（共通デザイン）をメディアクエリ無しでコーディング */
+    ...
+
+    /* タブレット用のメディアクエリでコーディング */
+    @media all and (min-width: 768px) {
+        ...
+    }
+    
+    /* 最後にPC用のメディアクエリでコーディング */
+    @media all and (min-width: 1000px) {
+        ...
+    }
+                    </code></pre>
+                </div>
+                <p>
+                    色々省略しましたが簡単に使用技術を載せてみました。<br>
+                    少しでも技術者の方の助けとなれば幸いです。
+                </p>
+            </div>
+        </div>
+
+        <div class="hr_footer"><hr/></div>
+ 	</main>
+{{end}}
+
+{{define "script_prebody"}}
+    <script src="/resources/js/siteMessage.js"></script>
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+{{end}}
