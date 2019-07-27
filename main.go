@@ -8,7 +8,6 @@ import (
     "html/template"
     "net/http"
     "github.com/jinzhu/gorm"
-    "reflect"
     _ "github.com/jinzhu/gorm/dialects/mysql"
     "log"
     "os"
@@ -26,8 +25,9 @@ import (
 // ここだけは環境によって変更すること
 const confDir = "docker/golang/config/env/"
 
-func isLast(x int, a interface{}) bool {
-    return x == reflect.ValueOf(a).Len() - 1
+// HTMLタグをエスケープせずそのまま出力する
+func getNoEscapedString(html string) template.HTML {
+    return template.HTML(html)
 }
 
 func main() {
@@ -45,11 +45,6 @@ func main() {
 
     // 静的ファイルをマッピング
     router.Static("/resources", envConf.Etc.SrcPath + "resources")
-
-    // テンプレートでループ中に最終行を判定する関数
-    router.SetFuncMap(template.FuncMap{
-        "isLast": isLast,
-    })
 
     // viewテンプレートを読み込み
     router.LoadHTMLGlob(envConf.Etc.SrcPath + "templates/*")
@@ -130,9 +125,6 @@ func main() {
         sceneId, _ := strconv.Atoi(context.Param("sceneId"))
 
         html := template.Must(template.ParseFiles(envConf.Etc.SrcPath + "templates/base.tmpl.html", envConf.Etc.SrcPath + "templates/scene.tmpl.html"))
-        router.SetFuncMap(template.FuncMap{
-            "isLast": isLast,
-        })
         router.SetHTMLTemplate(html)
 
         db := gormConnect()
@@ -160,7 +152,7 @@ func main() {
         tags := []structs.Tag{}
         db.Find(&tags)
 
-        context.HTML(http.StatusOK, "base.tmpl.html", gin.H{ "tags": tags, "sceneTags": sceneTags, "sceneDetails": sceneDetails, "movie": movie, "scene": scene })
+        context.HTML(http.StatusOK, "base.tmpl.html", gin.H{ "tags": tags, "sceneTags": sceneTags, "sceneDetails": sceneDetails, "movie": movie, "scene": scene, "memo": getNoEscapedString(scene.Memo) })
     })
     // お問い合わせ
     router.GET("/inquiry/", func(context *gin.Context) {
