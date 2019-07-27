@@ -60,6 +60,7 @@ func main() {
         router.SetHTMLTemplate(html)
 
         db := gormConnect()
+        defer db.Close()
 
         // シーン一覧を取得
         scenes := []structs.Scene{}
@@ -78,6 +79,7 @@ func main() {
         pageNo, _ := strconv.Atoi(context.Param("pageNo"))
 
         db := gormConnect()
+        defer db.Close()
 
         // シーン一覧を取得
         scenes := []structs.Scene{}
@@ -102,6 +104,7 @@ func main() {
         router.SetHTMLTemplate(html)
 
         db := gormConnect()
+        defer db.Close()
 
         // タグに紐づくmovie_idリストを取得
         tag := structs.Tag{}
@@ -133,6 +136,7 @@ func main() {
         router.SetHTMLTemplate(html)
 
         db := gormConnect()
+        defer db.Close()
 
         // シーンに紐づくタグ一覧取得
         sceneTags := []structs.SceneTag{}
@@ -169,6 +173,7 @@ func main() {
         inquiry := context.DefaultQuery("inquiry", "")
 
         db := gormConnect()
+        defer db.Close()
 
         // タグ一覧を取得
         tags := []structs.Tag{}
@@ -179,6 +184,7 @@ func main() {
     // お問い合わせ（確認画面）
     router.POST("/inquiry/send/", func(context *gin.Context) {
         db := gormConnect()
+        defer db.Close()
 
         // タグ一覧を取得
         tags := []structs.Tag{}
@@ -221,6 +227,7 @@ func main() {
         router.SetHTMLTemplate(html)
 
         db := gormConnect()
+        defer db.Close()
 
         // タグ一覧を取得
         tags := []structs.Tag{}
@@ -234,6 +241,7 @@ func main() {
         router.SetHTMLTemplate(html)
 
         db := gormConnect()
+        defer db.Close()
 
         // タグ一覧を取得
         tags := []structs.Tag{}
