@@ -34,6 +34,10 @@ var vueNews = new Vue({
 			const START_WHITE = "☆";
 			var numberStriung = START_BLACK.repeat(recommenddedNumber);
 			return numberStriung + START_WHITE.repeat(5 - recommenddedNumber);
-		}
+		},
+		// シーン詳細画面へ遷移
+		moveToScene: function(scene) {
+			window.location.href = "/scenes/" + scene.id + "/";
+		},
 	},
 })
