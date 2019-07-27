@@ -415,6 +415,7 @@ h2:before {
 	margin: 16px;
 	padding: 8px;
 	background: #ffffff;
+	cursor: pointer;
 }
 
 .article_wrapper:before {
@@ -570,6 +571,7 @@ p.tab_overview {
 }
 .overview_tab {
 	font-size: 1.0rem;
+	cursor: pointer;
 }
 .overview_tab:nth-child(1) {
 	border-radius: 4px 0 0 4px;
