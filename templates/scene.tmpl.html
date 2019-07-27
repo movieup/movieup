@@ -9,7 +9,7 @@
         <div class="tags">
             <div class="tag_wrapper">
                 {{ range $sceneTag := .sceneTags }}
-                    <a href="#">{{ $sceneTag.Tag.Name }}</a>
+                    <a href="/tags/{{ $sceneTag.TagId }}/">{{ $sceneTag.Tag.Name }}</a>
                 {{ end }}
             </div>
         </div>
