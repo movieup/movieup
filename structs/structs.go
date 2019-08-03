@@ -2,6 +2,7 @@ package structs
 
 import (
     "time"
+    "html/template"
 )
 
 type Movie struct {
@@ -23,6 +24,7 @@ type Scene struct {
     SceneId             int         `gorm:"column:scene_id"`
     RecommendedNumber   int         `gorm:"column:recommended_number"`
     Description         string      `gorm:"column:description"`
+    DescriptionHtml     template.HTML
     Memo                string      `gorm:"column:memo"`
     CreatedAt           time.Time   `gorm:"column:created_at"`
     CreatedAtString     string
