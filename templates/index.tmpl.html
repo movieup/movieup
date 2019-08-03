@@ -55,8 +55,7 @@
                                     <span>@{ scene.titleEn }</span>
                                 </div>
                                 <!-- description -->
-                                <span class="article_movie_description">
-                                    @{ scene.description }
+                                <span class="article_movie_description" v-html="scene.description">
                                 </span>
                             </div>
                         </a>
@@ -94,7 +93,7 @@
                     // タイトル（英語）
                     titleEn: "{{ $scene.Movie.TitleEn }}",
                     // シーン説明
-                    description: "{{ $scene.Description }}",
+                    description: "{{ $scene.DescriptionHtml }}",
                 },
             {{ end }}
         ];

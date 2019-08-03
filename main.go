@@ -60,6 +60,10 @@ func main() {
         // シーン一覧を取得
         scenes := []structs.Scene{}
         db.Preload("Movie").Limit(2).Order("created_at desc").Find(&scenes)
+        // シーン詳細をタグ出力可能な形へ編集
+        for index, scene := range scenes {
+            scenes[index].DescriptionHtml = getNoEscapedString(scene.Description)
+        }
 
         // タグ一覧を取得
         tags := []structs.Tag{}
@@ -147,12 +151,14 @@ func main() {
         // シーン情報取得
         scene := structs.Scene{}
         db.Find(&scene, "scene_id=?", sceneId)
+        // シーン詳細をタグ出力可能な形へ編集
+        scene.DescriptionHtml = getNoEscapedString(scene.Description)
 
         // タグ一覧を取得
         tags := []structs.Tag{}
         db.Find(&tags)
 
-        context.HTML(http.StatusOK, "base.tmpl.html", gin.H{ "tags": tags, "sceneTags": sceneTags, "sceneDetails": sceneDetails, "movie": movie, "scene": scene, "memo": getNoEscapedString(scene.Memo) })
+        context.HTML(http.StatusOK, "base.tmpl.html", gin.H{ "tags": tags, "sceneTags": sceneTags, "sceneDetails": sceneDetails, "movie": movie, "scene": scene, "movieDescription": getNoEscapedString(movie.Description), "sceneDescription": getNoEscapedString(scene.Description), "memo": getNoEscapedString(scene.Memo) })
     })
     // お問い合わせ
     router.GET("/inquiry/", func(context *gin.Context) {

@@ -1,7 +1,7 @@
 new Vue({
   el: '#tabs',
   data: {
-    activeTabNumber: 0
+    activeTabNumber: 2
   },
   methods: {
     clickTab: function(tabNumber){
