@@ -12,13 +12,13 @@
 
         <title>{{template "title" .}}</title>
 
-        <link rel="manifest" href="site.webmanifest">
+        <!--<link rel="manifest" href="site.webmanifest">-->
 		<link rel="apple-touch-icon" href="icon.png">
         <!-- 共通のCSSなど -->
         <link rel="stylesheet" href="/resources/css/main.css">
 
 		<!-- TODO：最後にminにする？ -->
-		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
     </head>
 <body>
     <header id="header">
@@ -41,7 +41,6 @@
 
         <!-- ハンバーガーメニュー押下時のオーバーレイ -->
         <div id="hamburger_overlay" class="hamburger_overlay" v-if="isShownMenu" v-on:click="clickHamburgerOverlay"></div>
-
     </header>
 
 	<!-- 背景イメージ -->
@@ -72,12 +71,15 @@
 		<p class="footer_copyright">© yoshida All Rights Reserved.</p>
 	</footer>
 
-	<!-- Google Analytics: UA-XXXXX-YをあなたのIDに変更 -->
-	<script>
-		window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
-		ga('create','UA-XXXXX-Y','auto');ga('send','pageview')
-	</script>
-	<script src="https://www.google-analytics.com/analytics.js" async defer></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145089497-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-145089497-1');
+    </script>
 
     <script src="/resources/js/common.js"></script>
     {{template "script_prebody" .}}
