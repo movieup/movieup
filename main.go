@@ -115,6 +115,10 @@ func main() {
         // movie_idを持つシーンを全て取得
         scenes := []structs.Scene{}
         db.Preload("Movie").Where("scene_id in (?)", sceneIds).Preload("Movie").Find(&scenes)
+        // シーン詳細をタグ出力可能な形へ編集
+        for index, scene := range scenes {
+            scenes[index].DescriptionHtml = getNoEscapedString(scene.Description)
+        }
 
         // タグ一覧を取得
         tags := []structs.Tag{}
