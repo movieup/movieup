@@ -428,7 +428,7 @@ h2:before {
 	background-color: #fff;
 	//box-shadow: 0 3px 6px #ccc;
 	//border: #ccc solid 1px;
-	padding: 5px 5px 25px 5px;
+	padding: 5px 5px 8px 5px;
 	margin-bottom: 10px;
 }
 
@@ -484,6 +484,10 @@ h2:before {
 	line-height: inherit;
 	font-size: 0.7rem;
 	margin-top: 16px;
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 3;
 }
 
 .recommend_point {
