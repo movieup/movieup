@@ -31,6 +31,19 @@
                     </div>
                 </div>
 
+                {{/* キャスト */}}
+                {{ $castLength := len .sceneCasts }}
+                {{ if ne $castLength 0 }}
+                    <div class="h2_wrapper h2_scene"><h2>シーン登場キャスト</h2></div>
+                    <div class="casts_wrapper">
+                        {{ range $index, $sceneCast := .sceneCasts }}
+                            <p class="character_name">{{ $sceneCast.CharacterName }}</p>
+                            <p class="cast">({{ $sceneCast.CastName }})</p>
+                            <p class="cast_description">{{ $sceneCast.Description }}</p>
+                        {{ end }}
+                    </div>
+                {{ end }}
+
                 <div class="hr_footer"><hr/></div>
 
                 {{/* シーン翻訳 */}}

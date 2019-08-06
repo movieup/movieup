@@ -602,6 +602,31 @@ p.tab_overview {
 	color: #D6687B;
 	margin-left: 8px;
 }
+
+/* キャスト */
+.casts_wrapper {
+	background: #fff;
+	padding: 8px 8px 0px 8px;
+	margin: 8px 16px;
+	border-radius: 4px;
+}
+.casts_wrapper p {
+	padding: 0px;
+	margin: 0px;
+}
+.casts_wrapper .character_name {
+	font-size: 0.8rem;
+	font-weight: bold;
+}
+.casts_wrapper .cast {
+	font-size: 0.7rem;
+	margin-bottom: 4px;
+}
+.casts_wrapper .cast_description {
+	font-size: 0.8rem;
+	padding-bottom: 8px;
+}
+
 /* シーン翻訳 */
 .h2_scene {
 	color: #FFFFFF;
@@ -1109,6 +1134,9 @@ footer ul {
 	}
 	.overview_wrapper {
 		padding: 0;
+	}
+	.casts_wrapper {
+		margin: 8px 0;
 	}
 	.scene_contents_wrapper_inner .hr_footer hr {
 		margin: 28px 0px 0 0px;

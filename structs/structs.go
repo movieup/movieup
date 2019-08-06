@@ -71,3 +71,14 @@ type SceneDetail struct {
 func (m *SceneDetail) TableName() string {
 	return "tbl_scene_detail"
 }
+type SceneCast struct {
+    MovieId int `gorm:"column:movie_id;primary_key"`
+    SceneId int `gorm:"column:scene_id;primary_key"`
+    OrderNumber int `gorm:"column:order_number;primary_key"`
+    CharacterName    string      `gorm:"column:character_name"`
+    CastName    string      `gorm:"column:cast_name"`
+    Description    string      `gorm:"column:description"`
+}
+func (m *SceneCast) TableName() string {
+	return "tbl_scene_cast"
+}
