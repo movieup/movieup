@@ -162,6 +162,12 @@ func main() {
         sceneCasts := []structs.SceneCast{}
         db.Find(&sceneCasts, "scene_id=?", sceneId)
 
+        // 辞書情報取得
+        sceneDictionaries := []structs.SceneDictionary{}
+        //db.Find(&sceneDictionaries, "scene_id=?", sceneId)
+        //db.Table("users").Select("users.name, emails.email").Joins("left join emails on emails.user_id = users.id").Scan(&results)
+        db.Debug().Table("tbl_scene_dictionary").Select("tbl_scene_dictionary.dictionary_id, mst_dictionary.name, mst_dictionary.description").Joins("inner join mst_dictionary on tbl_scene_dictionary.dictionary_id = mst_dictionary.dictionary_id").Where("scene_id = ?", sceneId).Order("mst_dictionary.name asc").Scan(&sceneDictionaries)
+
         // タグ一覧を取得
         tags := []structs.Tag{}
         db.Find(&tags)
@@ -175,6 +181,7 @@ func main() {
             "sceneCasts": sceneCasts,
             "movieDescription": getNoEscapedString(movie.Description),
             "sceneDescription": getNoEscapedString(scene.Description),
+            "sceneDictionaries": sceneDictionaries,
             "memo": getNoEscapedString(scene.Memo) })
     })
     // お問い合わせ
