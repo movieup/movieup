@@ -23,7 +23,6 @@
         <!-- 共通のCSSなど -->
         <link rel="stylesheet" href="/resources/css/main.css">
 
-		<!-- TODO：最後にminにする？ -->
 		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
     </head>
 <body>
@@ -65,7 +64,7 @@
     {{template "content" .}}
 
 	<footer>
-		<h3>記事カテゴリ一覧</h3>
+		<h3>タグ一覧</h3>
 		<div class="footer_category_list_wrapper">
 			<ul class="footer_category_list">
                 {{ range $tag := .tags }}

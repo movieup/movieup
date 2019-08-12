@@ -15,6 +15,8 @@
         </div>
         <div class="scene_contents_wrapper_outer">
             <div class="scene_contents_wrapper_inner">
+                {{/* ページタイトル */}}
+                <h1 class="main_h">【映画：{{ .movie.TitleJp }}】シーン翻訳（{{ .scene.Title }}）</h1>
                 {{/* 概要 */}}
                 <div id="tabs" class="overview_wrapper">
                     <div class="overview_movie_title">
@@ -47,7 +49,7 @@
                 <div class="hr_footer"><hr/></div>
 
                 {{/* シーン翻訳 */}}
-                <div class="h2_wrapper h2_scene"><h2>シーン翻訳</h2></div>
+                <div class="h2_wrapper h2_scene"><h2 class="sub_h">シーン翻訳</h2></div>
                 <div class="scene_wrapper">
                     {{ $sceneDetailLengthMax := (len .sceneDetails) }}
                     {{ range $index, $sceneDetail := .sceneDetails }}
@@ -79,7 +81,7 @@
                     <div class="hr_footer"><hr/></div>
 
                     {{/* メモ */}}
-                    <div class="h2_wrapper h2_scene"><h2>メモ</h2></div>
+                    <div class="h2_wrapper h2_scene"><h3 class="sub_h">メモ</h3></div>
                     <div class="scene_memo">
                         <p>{{ .memo }}</p>
                     </div>
@@ -87,7 +89,7 @@
                     {{/* 単語・文法帳 */}}
                     {{ $sceneDictionaryCount := len .sceneDictionaries }}
                     {{ if ne $sceneDictionaryCount 0 }}
-                        <div class="h2_wrapper h2_scene"><h2>単語・文法帳</h2></div>
+                        <div class="h2_wrapper h2_scene"><h3 class="sub_h">単語・文法帳</h3></div>
                         <div class="scene_memo">
                             {{ range $index, $sceneDictionary := .sceneDictionaries }}
                                 <p><b>{{ $sceneDictionary.Name }}</b></p>

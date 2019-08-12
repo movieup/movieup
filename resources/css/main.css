@@ -198,13 +198,20 @@ footer {
 	display: none;
 }
 
+/* ページトップタイトル（共通） */
+.main_h {
+	font-size: 1.2rem;
+	color: #fff;
+	padding: 16px;
+}
+
 /* h2（共通） */
-h2 {
+.sub_h {
 	position: relative;
 	padding-left: 56px;
 }
 
-h2:before {
+.sub_h:before {
 	position: absolute;
 	content: '';
 	top: 17px;
@@ -305,14 +312,15 @@ h2:before {
 	text-align: center;
 }
 
-.site_message_main h4 {
+.site_message_main span {
 	font-size: 0.7rem;
 	text-align: center;
 	margin-bottom: 0px;
 	margin-top: 0px;
+	display: block;
 }
 
-.site_message_main h3 {
+.site_message_main .main_title {
 	font-size: 1.1rem;
 	text-align: center;
 	margin-top: 0;
@@ -355,7 +363,7 @@ h2:before {
 	padding-top: 75px;
 }
 
-.top_news h2, .about h2 {
+.top_news h1, .about h1, .top_news h2, .about h2 {
 	color: #FFFFFF;
 	margin-top: 0;
 	margin-bottom: 0;
@@ -634,11 +642,11 @@ p.tab_overview {
     margin-bottom: 0;
     padding-top: 17px;
 }
-.h2_scene h2 {
+.h2_scene h2, .h2_scene h3 {
 	margin: 0;
 	font-size: 1.1rem;
 }
-.h2_scene h2:before {
+.h2_scene h2:before, .h2_scene h3:before {
 	top: 0px;
 }
 .scene_wrapper {
@@ -755,7 +763,7 @@ p.dictionary_description {
  * 当サイトについて
  */
 .about_content {
-	margin: 0 16px;
+	margin: 16px 16px 0 16px;
 }
 .about_content p {
 	background: #fff;
@@ -945,6 +953,9 @@ footer ul {
 		margin-bottom: 8px;
 	}
 	/* 記事一覧 */
+	.article_list_wrapper {
+		margin-top: 16px;
+	}
 	.article_list {
 		display: grid;
 		gap: 8px;
@@ -981,7 +992,7 @@ footer ul {
 /* ------------------------------------ */
 /*@media all and (min-width: 920px) {*/
 @media all and (min-width: 1000px) {
-	h2 {
+	h1, h2 {
 		margin-left: 28px;
 	}
 	h2:before {
@@ -1060,13 +1071,17 @@ footer ul {
 	.site_message_main_wrapper {
 		margin-top: -72px;
 	}
+	/* 共通タイトル */
+	.main_h {
+		padding: 16px 0;
+	}
 	/* 新着一覧 */
 	main .h2_wrapper {
 		display: flex;
 	    justify-content: center;
 	    align-items: center;
 	}
-	main h2 {
+	main h1, main h2 {
 		width: 1000px;
 	}
 	.top_news, .about {

@@ -23,6 +23,7 @@ type Scene struct {
     Movie               Movie       `gorm:"foreignkey:movie_id;association_foreignkey:movie_id"`
     SceneId             int         `gorm:"column:scene_id"`
     RecommendedNumber   int         `gorm:"column:recommended_number"`
+    Title               string      `gorm:"column:title"`
     Description         string      `gorm:"column:description"`
     DescriptionHtml     template.HTML
     Memo                string      `gorm:"column:memo"`
