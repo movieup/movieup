@@ -36,7 +36,7 @@
                 {{/* キャスト */}}
                 {{ $castLength := len .sceneCasts }}
                 {{ if ne $castLength 0 }}
-                    <div class="h2_wrapper h2_scene"><h2>シーン登場キャスト</h2></div>
+                    <div class="h2_wrapper h2_scene"><h2 class="sub_h">シーン登場キャスト</h2></div>
                     <div class="casts_wrapper">
                         {{ range $index, $sceneCast := .sceneCasts }}
                             <p class="character_name">{{ $sceneCast.CharacterName }}</p>
