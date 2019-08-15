@@ -54,6 +54,8 @@
                                     <img src="/resources/images/icon_en.svg" />
                                     <span>@{ scene.titleEn }</span>
                                 </div>
+                                <!-- scene title -->
+                                <p class="article_scene_title">@{ scene.sceneTitle }</p>
                                 <!-- description -->
                                 <span class="article_movie_description" v-html="scene.description">
                                 </span>
@@ -87,6 +89,8 @@
                     titleJp: "{{ $scene.Movie.TitleJp }}",
                     // タイトル（英語）
                     titleEn: "{{ $scene.Movie.TitleEn }}",
+                    // シーンタイトル
+                    sceneTitle: "{{ $scene.Title }}",
                     // シーン説明
                     description: "{{ $scene.DescriptionHtml }}",
                 },
