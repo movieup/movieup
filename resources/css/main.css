@@ -486,12 +486,19 @@ footer {
 .article_movie_title > img {
 	width: 24px;
 }
+/* シーンタイトル */
+.article_scene_title {
+	font-size: 0.9rem;
+	margin: 8px 0 0 8px;
+}
 /* 映画説明 */
 .article_movie_description {
 	display: block;
 	line-height: inherit;
 	font-size: 0.7rem;
-	margin-top: 16px;
+	padding: 4px;
+	margin: 4px 8px;
+	background: #eee;
 	overflow: hidden;
 	display: -webkit-box;
 	-webkit-box-orient: vertical;
