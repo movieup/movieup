@@ -21,6 +21,8 @@ var vueNews = new Vue({
 			                    titleJp: scene.Movie.TitleJp,
 			                    // タイトル（英語）
 			                    titleEn: scene.Movie.TitleEn,
+								// シーンタイトル
+			                    sceneTitle: scene.Title,
 			                    // シーン説明
 			                    description: scene.Description,
 							});
