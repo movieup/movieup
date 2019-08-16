@@ -22,10 +22,47 @@
  	<!-- メインコンテンツ -->
  	<main>
  		<!-- 記事一覧 -->
+        {{ $fiveList := .fiveList }}
  		<div id="news" class="top_news">
  			<div class="h2_wrapper"><h1 class="sub_h">新着翻訳シーン</h1></div>
  			<div class="article_list_wrapper">
  				<div class="article_list">
+                    {{ range $scene := .scenes }}
+                        <a href="/scenes/{{ $scene.SceneId }}/">
+                            <div class="article">
+                                <!-- おすすめ度｜投稿日 -->
+                                <div class="article_top">
+                                    <div class="article_evaluation">
+                                        <p class="article_evaluation_title">
+                                            初心者おすすめ度
+                                        </p>
+                                        <p class="article_evaluation_values">
+                                            {{ range $number := $fiveList }}{{ if ge $scene.RecommendedNumber $number }}★{{ else }}☆{{ end }}{{ end }}
+                                        </p>
+                                    </div>
+                                    <div class="article_date_posted">
+                                        {{ $scene.GetFormattedCreatedAt }}
+                                    </div>
+                                </div>
+                                <!-- movie title(jp) -->
+                                <div class="article_movie_title">
+                                    <img src="/resources/images/icon_jp.svg" />
+                                    <span>{{ $scene.Movie.TitleJp }}</span>
+                                </div>
+                                <!-- movie title(en) -->
+                                <div class="article_movie_title">
+                                    <img src="/resources/images/icon_en.svg" />
+                                    <span>{{ $scene.Movie.TitleEn }}</span>
+                                </div>
+                                <!-- scene title -->
+                                <p class="article_scene_title">{{ $scene.Title }}</p>
+                                <!-- description -->
+                                <span class="article_movie_description">
+                                    {{ $scene.DescriptionHtml }}
+                                </span>
+                            </div>
+                        </a>
+                    {{ end }}
                     <!-- 記事 -->
                     <div v-for="scene in scenes">
                         <a @click="moveToScene(scene)">
@@ -66,9 +103,11 @@
  			</div>
 
  			<!-- more-->
+            {{/* 記事がたまってきたらmain.goの.Limit(10)を変更してこのコメントアウトを戻す
  			<div class="next_article_list">
  				<a href="#" onclick="return false;" @click="getNextArticles">もっと見る</a>
  			</div>
+            */}}
  		</div>
 
         <div class="hr_footer"><hr/></div>
@@ -79,27 +118,4 @@
     <script src="/resources/js/index.js"></script>
     <script src="/resources/js/siteMessage.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script>
-        {{ $fiveList := .fiveList }}
-        vueNews.scenes = [
-            {{ range $scene := .scenes }}
-                {
-                    // シーンID
-                    id: {{ $scene.SceneId }},
-                    // 作成日
-                    createdAt: "{{ $scene.GetFormattedCreatedAt }}",
-                    // 初心者おすすめ度
-                    recommenddedNumber: "{{ range $number := $fiveList }}{{ if ge $scene.RecommendedNumber $number }}★{{ else }}☆{{ end }}{{ end }}",
-                    // タイトル（日本語）
-                    titleJp: "{{ $scene.Movie.TitleJp }}",
-                    // タイトル（英語）
-                    titleEn: "{{ $scene.Movie.TitleEn }}",
-                    // シーンタイトル
-                    sceneTitle: "{{ $scene.Title }}",
-                    // シーン説明
-                    description: "{{ $scene.DescriptionHtml }}",
-                },
-            {{ end }}
-        ];
-    </script>
 {{end}}
