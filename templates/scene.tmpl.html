@@ -17,12 +17,11 @@
             <div class="scene_contents_wrapper_inner">
                 {{/* ページタイトル */}}
                 <h1 class="main_h">【映画：{{ .movie.TitleJp }}】シーン翻訳（{{ .scene.Title }}）</h1>
+                <div class="scene_top_title_en">
+                    <span class="article_title_en">(映画原題：{{ .movie.TitleEn }})</span>
+                </div>
                 {{/* 概要 */}}
                 <div id="tabs" class="overview_wrapper">
-                    <div class="overview_movie_title">
-                        <div class="article_movie_title"><img src="/resources/images/icon_jp.svg"> <span>{{ .movie.TitleJp }}</span></div>
-                        <div class="article_movie_title"><img src="/resources/images/icon_en.svg"> <span>{{ .movie.TitleEn }}</span></div>
-                    </div>
                     <ul>
                         <li class="overview_tab" @click="clickTab(1)" v-bind:class="{ 'isActiveTab' : (activeTabNumber !== 0), 'active_overview_tab_li': (activeTabNumber === 1) }">映画概要<i class="fas fa-angle-down"></i></li>
                         <li class="overview_tab" @click="clickTab(2)" v-bind:class="{ 'isActiveTab' : (activeTabNumber !== 0), 'active_overview_tab_li': (activeTabNumber === 2) }">シーン概要<i class="fas fa-angle-down"></i></li>

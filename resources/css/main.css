@@ -557,6 +557,11 @@ span.article_title_en {
     -webkit-border-radius: 12px;
     -moz-border-radius: 12px;
 }
+/* タイトル */
+.scene_top_title_en {
+	padding: 0 16px;
+	margin-top: -24px;
+}
 
 /* 概要 */
 .overview_wrapper {
