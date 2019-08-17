@@ -8,7 +8,7 @@
  			<article v-if="show" class="site_message_main">
                 <span><strong>MOViE UP</strong></span>
  				<div class="site_message_main_img">
- 					<img src="/resources/images/icon_reverse_black.svg" />
+ 					<img src="/resources/images/icon_reverse_black.svg" alt="[MOViE UP]" />
  				</div>
  				<p class="main_title"><strong>映画｜翻訳</strong></p>
  				<p>
@@ -22,13 +22,13 @@
  	<!-- メインコンテンツ -->
  	<main>
  		<!-- 記事一覧 -->
+        {{ $fiveList := .fiveList }}
  		<div id="news" class="top_news">
- 			<div class="h2_wrapper"><h2 class="sub_h">「{{ .tag.Name }}」の翻訳シーン一覧</h2></div>
+ 			<div class="h2_wrapper"><h2 class="sub_h">「{{ .tag.Name }}」のセリフ翻訳一覧</h2></div>
  			<div class="article_list_wrapper">
  				<div class="article_list">
-                    <!-- 記事 -->
-                    <div v-for="scene in scenes">
-                        <a @click="moveToScene(scene)">
+                    {{ range $scene := .scenes }}
+                        <a href="/scenes/{{ $scene.SceneId }}/">
                             <div class="article">
                                 <!-- おすすめ度｜投稿日 -->
                                 <div class="article_top">
@@ -37,23 +37,24 @@
                                             初心者おすすめ度
                                         </p>
                                         <p class="article_evaluation_values">
-                                            @{ scene.recommenddedNumber }
+                                            {{ range $number := $fiveList }}{{ if ge $scene.RecommendedNumber $number }}★{{ else }}☆{{ end }}{{ end }}
                                         </p>
                                     </div>
                                     <div class="article_date_posted">
-                                        @{ scene.createdAt }
+                                        {{ $scene.GetFormattedCreatedAt }}
                                     </div>
                                 </div>
                                 <!-- title -->
                                 <div class="article_movie_title">
-                                    <span>【映画：@{ scene.titleJp }】@{ scene.sceneTitle }<br><span class="article_title_en">(映画原題：@{ scene.titleEn })</span><br></span>
+                                    <span>【映画：{{ $scene.Movie.TitleJp }}】{{ $scene.Title }}<br><span class="article_title_en">(映画原題：{{ $scene.Movie.TitleEn }})</span><br></span>
                                 </div>
                                 <!-- description -->
-                                <span class="article_movie_description" v-html="scene.description">
+                                <span class="article_movie_description">
+                                    {{ $scene.DescriptionHtml }}
                                 </span>
                             </div>
                         </a>
-                    </div>
+                    {{ end }}
  				</div>
  			</div>
  		</div>
@@ -66,27 +67,4 @@
     <script src="/resources/js/tagScenes.js"></script>
     <script src="/resources/js/siteMessage.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script>
-        {{ $fiveList := .fiveList }}
-        vueNews.scenes = [
-            {{ range $scene := .scenes }}
-                {
-                    // シーンID
-                    id: {{ $scene.SceneId }},
-                    // 作成日
-                    createdAt: "{{ $scene.GetFormattedCreatedAt }}",
-                    // 初心者おすすめ度
-                    recommenddedNumber: "{{ range $number := $fiveList }}{{ if ge $scene.RecommendedNumber $number }}★{{ else }}☆{{ end }}{{ end }}",
-                    // タイトル（日本語）
-                    titleJp: "{{ $scene.Movie.TitleJp }}",
-                    // タイトル（英語）
-                    titleEn: "{{ $scene.Movie.TitleEn }}",
-                    // シーンタイトル
-                    sceneTitle: "{{ $scene.Title }}",
-                    // シーン説明
-                    description: "{{ $scene.DescriptionHtml }}",
-                },
-            {{ end }}
-        ];
-    </script>
 {{end}}

@@ -8,7 +8,7 @@
  			<article v-if="show" class="site_message_main">
  				<span><strong>MOViE UP</strong></span>
  				<div class="site_message_main_img">
- 					<img src="/resources/images/icon_reverse_black.svg" />
+ 					<img src="/resources/images/icon_reverse_black.svg" alt="[MOViE UP]" />
  				</div>
  				<p class="main_title"><strong>映画｜翻訳</strong></p>
  				<p>
@@ -24,7 +24,7 @@
  		<!-- 記事一覧 -->
         {{ $fiveList := .fiveList }}
  		<div id="news" class="top_news">
- 			<div class="h2_wrapper"><h1 class="sub_h">新着翻訳シーン</h1></div>
+ 			<div class="h2_wrapper"><h1 class="sub_h">新着セリフ翻訳</h1></div>
  			<div class="article_list_wrapper">
  				<div class="article_list">
                     {{ range $scene := .scenes }}
