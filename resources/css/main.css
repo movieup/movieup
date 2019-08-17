@@ -470,21 +470,23 @@ footer {
 	color: #888;
 }
 
-/* 映画タイトル */
+/* タイトル */
 .article_movie_title {
 	margin-top: 8px;
+	margin-bottom: 16px;
 	display: flex;
 }
-.article_movie_title span, .article_movie_title img {
+.article_movie_title span {
 	align-self: center;
 }
-.article_movie_title span {
+.article_movie_title > span {
 	margin-left: 8px;
-
 	font-size: 0.9rem;
 }
-.article_movie_title > img {
-	width: 24px;
+span.article_title_en {
+	font-size: 0.7rem;
+	margin-bottom: 8px;
+	color: #888;
 }
 /* シーンタイトル */
 .article_scene_title {

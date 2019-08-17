@@ -44,18 +44,10 @@
                                         @{ scene.createdAt }
                                     </div>
                                 </div>
-                                <!-- title(jp) -->
+                                <!-- title -->
                                 <div class="article_movie_title">
-                                    <img src="/resources/images/icon_jp.svg" />
-                                    <span>@{ scene.titleJp }</span>
+                                    <span>【映画：@{ scene.titleJp }】@{ scene.sceneTitle }<br><span class="article_title_en">(映画原題：@{ scene.titleEn })</span><br></span>
                                 </div>
-                                <!-- title(en) -->
-                                <div class="article_movie_title">
-                                    <img src="/resources/images/icon_en.svg" />
-                                    <span>@{ scene.titleEn }</span>
-                                </div>
-                                <!-- scene title -->
-                                <p class="article_scene_title">@{ scene.sceneTitle }</p>
                                 <!-- description -->
                                 <span class="article_movie_description" v-html="scene.description">
                                 </span>
