@@ -15,10 +15,21 @@
         </div>
         <div class="scene_contents_wrapper_outer">
             <div class="scene_contents_wrapper_inner">
-                {{/* ページタイトル */}}
-                <h1 class="main_h">【映画：{{ .movie.TitleJp }}】シーン翻訳（{{ .scene.Title }}）</h1>
-                <div class="scene_top_title_en">
-                    <span class="article_title_en">(映画原題：{{ .movie.TitleEn }})</span>
+                <div class="scene_contents_title_wrapper">
+                    {{/* ページタイトル */}}
+                    <div>
+                        <h1 class="main_h">【映画：{{ .movie.TitleJp }}】シーン翻訳（{{ .scene.Title }}）</h1>
+                        <div class="scene_top_title_en">
+                            <span class="article_title_en">(映画原題：{{ .movie.TitleEn }})</span>
+                        </div>
+                    </div>
+                    {{/* パッケージ画像（amazonアソシエイト） */}}
+                    {{ if ne .movie.AmazonAffiliateUrl "" }}
+                        <div class="scene_top_package_img">
+                            {{ .movie.AmazonAffiliateUrlHtml }}
+                            映画詳細はこちらをクリック
+                        </div>
+                    {{ end }}
                 </div>
                 {{/* 概要 */}}
                 <div id="tabs" class="overview_wrapper">

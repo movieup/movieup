@@ -11,6 +11,8 @@ type Movie struct {
     TitleJp       string `gorm:"column:title_jp"`
     TitleEn       string `gorm:"column:title_en"`
     Description   string `gorm:"column:description"`
+    AmazonAffiliateUrl  string `gorm:"column:amazon_affiliate_url"`
+    AmazonAffiliateUrlHtml  template.HTML
     Scenes        []Scene `gorm:"foreignkey:movie_id;association_foreignkey:movie_id"`
 }
 func (m *Movie) TableName() string {

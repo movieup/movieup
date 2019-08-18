@@ -14,7 +14,7 @@ span, p {
 }
 
 h3 {
-	width: 100%;
+	width: auto;
 }
 
 /* アンカーcssリセット */
@@ -209,9 +209,14 @@ footer {
 .sub_h {
 	position: relative;
 	padding-left: 56px;
+	/*padding-left: 40px;*/
+}
+.sub_h_top {
+	position: relative;
+	padding-left: 56px;
 }
 
-.sub_h:before {
+.sub_h:before, .sub_h_top:before {
 	position: absolute;
 	content: '';
 	top: 17px;
@@ -368,6 +373,7 @@ footer {
 	margin-top: 0;
 	margin-bottom: 0;
 	padding-top: 17px;
+	padding-right: 16px;
 	font-size: 1.1rem;
 }
 
@@ -561,6 +567,20 @@ span.article_title_en {
 .scene_top_title_en {
 	padding: 0 16px;
 	margin-top: -24px;
+}
+.scene_contents_title_wrapper {
+	display: flex;
+	-webkit-flex-direction: column;
+	flex-direction: column;
+}
+.scene_top_package_img {
+	text-align:center;
+	margin-top: 8px;
+	display: flex;
+	-webkit-flex-direction: column;
+	flex-direction: column;
+	font-size: 0.7rem;
+	color: #999;
 }
 
 /* 概要 */
@@ -1012,6 +1032,9 @@ footer ul {
 	h2:before {
 		left: 14px;
 	}
+	h3 {
+		width: 100%;
+	}
 	/* ヘッダー */
 	header {
 		display: flex;
@@ -1068,6 +1091,15 @@ footer ul {
 		-webkit-transform: translate3d(0, 0, 0);
 		transform: translate3d(0, 0, 0);
 	}
+	.sub_h {
+		padding-left: 40px;
+	}
+	.sub_h:before {
+		left: 0;
+	}
+	.sub_h_top:before {
+		left: 30px;
+	}
 	/* LearnEnglish */
 	.top_area_wrapper {
 		display: flex;
@@ -1088,6 +1120,10 @@ footer ul {
 	/* 共通タイトル */
 	.main_h {
 		padding: 16px 0;
+	}
+	.sub_h_top {
+		position: relative;
+		padding-left: 72px;
 	}
 	/* 新着一覧 */
 	main .h2_wrapper {
@@ -1177,9 +1213,6 @@ footer ul {
 	}
 	.scene_contents_wrapper_inner .hr_footer hr {
 		margin: 28px 0px 0 0px;
-	}
-	.scene_contents_wrapper_inner h2 {
-		margin-left: -13px;
 	}
 	.scene_memo {
 		margin-right: 0;

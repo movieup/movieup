@@ -151,6 +151,8 @@ func main() {
         if len(sceneDetails) > 0 {
             db.Find(&movie, "movie_id=?", sceneDetails[0].MovieId)
         }
+        // amzaonアソシエイトリンクを出力可能な形へ編集
+        movie.AmazonAffiliateUrlHtml = getNoEscapedString(movie.AmazonAffiliateUrl)
 
         // シーン情報取得
         scene := structs.Scene{}
