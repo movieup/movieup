@@ -273,6 +273,20 @@ func main() {
 
         context.HTML(http.StatusOK, "base.tmpl.html", gin.H{ "tags": tags })
     })
+    // プライバシーポリシー
+    router.GET("/policy/", func(context *gin.Context) {
+        html := template.Must(template.ParseFiles(envConf.Etc.SrcPath + "templates/base.tmpl.html", envConf.Etc.SrcPath + "templates/policy.tmpl.html"))
+        router.SetHTMLTemplate(html)
+
+        db := gormConnect()
+        defer db.Close()
+
+        // タグ一覧を取得
+        tags := []structs.Tag{}
+        db.Find(&tags)
+
+        context.HTML(http.StatusOK, "base.tmpl.html", gin.H{ "tags": tags })
+    })
 
     router.Run(":8080")
 }

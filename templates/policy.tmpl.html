@@ -1,0 +1,53 @@
+{{define "title"}}プライバシーポリシー | MOViE UP{{end}}
+{{define "description"}}英語学習中の方、また自身の学習ために映画のワンシーンのセリフ翻訳を記事として載せています。映画としても英語学習としてもおすすめのものを厳選して載せていす。楽しく英語学習する材料にお使いください。{{end}}
+
+ {{define "content"}}
+ 	<!-- サイトメッセージ -->
+ 	<div id="site_message" class="site_message_main_wrapper">
+ 		<transition name="fade">
+ 			<article v-if="show" class="site_message_main">
+                <span><strong>MOViE UP</strong></span>
+ 				<div class="site_message_main_img">
+ 					<img src="/resources/images/icon_reverse_black.svg" />
+ 				</div>
+ 				<p class="main_title"><strong>映画｜翻訳</strong></p>
+ 				<p>
+ 					自身の英語学習のために翻訳した映画のワンシーンを記事として載せています<br>
+ 					たくさんの人に楽しく英語学習が出来る材料となれば幸いです
+ 				</p>
+ 			</article>
+ 		</transition>
+ 	</div>
+
+ 	<!-- メインコンテンツ -->
+ 	<main>
+        <div class="about">
+            <div class="h2_wrapper"><h1 class="sub_h_top">当サイトに掲載されている広告について</h1></div>
+            <div class="about_content">
+                <p>
+                    当サイトでは、第三者配信の広告サービス（<a class="a_normal" href="http://www.google.com/adsense/start/" data-slimstat="5">Googleアドセンス</a>、<a class="a_normal" href="http://www.a8.net/" data-slimstat="5">A8.net</a>、<a class="a_normal" href="https://affiliate.amazon.co.jp/" data-slimstat="5">Amazonアソシエイト</a>、<a class="a_normal" href="https://www.valuecommerce.ne.jp/" target="_blank" rel="noopener" data-slimstat="5">バリューコマース</a>、<a class="a_normal" href="https://www.apple.com/jp/itunes/affiliates/" target="_blank" rel="noopener" data-slimstat="5">iTunes アフィリエイトプログラム</a>）を利用しています。<br>
+                    このような広告配信事業者は、ユーザーの興味に応じた商品やサービスの広告を表示するため、当サイトや他サイトへのアクセスに関する情報 『Cookie』(氏名、住所、メール アドレス、電話番号は含まれません) を使用することがあります。<br>
+                    またGoogleアドセンスに関して、このプロセスの詳細やこのような情報が広告配信事業者に使用されないようにする方法については、<a class="a_normal" href="http://www.google.co.jp/policies/technologies/ads/" data-slimstat="5">こちら</a>をクリックしてください。
+                </p>
+            </div>
+        </div>
+        <div class="about">
+            <div class="h2_wrapper"><h1 class="sub_h_top">当サイトが使用しているアクセス解析ツールについて</h1></div>
+            <div class="about_content">
+                <p>
+                    当サイトでは、Googleによるアクセス解析ツール「Googleアナリティクス」を利用しています。<br>
+                    このGoogleアナリティクスはトラフィックデータの収集のためにCookieを使用しています。<br>
+                    このトラフィックデータは匿名で収集されており、個人を特定するものではありません。<br>
+                    この機能はCookieを無効にすることで収集を拒否することが出来ますので、お使いのブラウザの設定をご確認ください。<br>
+                    この規約に関して、詳しくは<a class="a_normal" href="http://www.google.com/analytics/terms/jp.html" data-slimstat="5">こちら</a>、または<a class="a_normal" href="https://www.google.com/intl/ja/policies/privacy/partners/" data-slimstat="5">こちら</a>をクリックしてください。
+                </p>
+            </div>
+        </div>
+
+        <div class="hr_footer"><hr/></div>
+ 	</main>
+{{end}}
+
+{{define "script_prebody"}}
+    <script src="/resources/js/siteMessage.js"></script>
+{{end}}

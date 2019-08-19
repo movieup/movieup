@@ -18,7 +18,7 @@
                 <div class="scene_contents_title_wrapper">
                     {{/* ページタイトル */}}
                     <div>
-                        <h1 class="main_h">【映画：{{ .movie.TitleJp }}】シーン翻訳（{{ .scene.Title }}）</h1>
+                        <h1 class="main_h">【映画：{{ .movie.TitleJp }}】セリフ翻訳（{{ .scene.Title }}）</h1>
                         <div class="scene_top_title_en">
                             <span class="article_title_en">(映画原題：{{ .movie.TitleEn }})</span>
                         </div>
@@ -58,8 +58,8 @@
 
                 <div class="hr_footer"><hr/></div>
 
-                {{/* シーン翻訳 */}}
-                <div class="h2_wrapper h2_scene"><h2 class="sub_h">シーン翻訳</h2></div>
+                {{/* セリフ翻訳 */}}
+                <div class="h2_wrapper h2_scene"><h2 class="sub_h">セリフ翻訳</h2></div>
                 <div class="scene_wrapper">
                     {{ $sceneDetailLengthMax := (len .sceneDetails) }}
                     {{ range $index, $sceneDetail := .sceneDetails }}
@@ -91,7 +91,7 @@
                     <div class="hr_footer"><hr/></div>
 
                     {{/* 翻訳メモ */}}
-                    <div class="h2_wrapper h2_scene"><h3 class="sub_h">翻訳メモ</h3></div>
+                    <div class="h2_wrapper h2_scene"><h3 class="sub_h">セリフ翻訳メモ</h3></div>
                     <div class="scene_memo">
                         <p>{{ .memo }}</p>
                     </div>

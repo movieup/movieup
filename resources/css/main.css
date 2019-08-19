@@ -22,6 +22,11 @@ a:link, a:visited {
 	color: #fff;
 	text-decoration: none;
 }
+/* でも普通のアンカーも使いたい時はこっち */
+.a_normal {
+	color: #333 !important;
+	text-decoration: underline !important;
+}
 
 header {
 	background-color: #ffffff;
@@ -927,6 +932,12 @@ footer ul {
 	color: #ddd;
 	text-align: center;
 	padding-bottom: 8px;
+}
+
+.footer_privacy_policy {
+	font-size: 0.6rem;
+	text-align: center;
+	margin-top: 8px;
 }
 
 /* -------------------------------------------- */
