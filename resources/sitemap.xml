@@ -52,5 +52,10 @@
   <priority>1.0</priority>
   <changefreq>weekly</changefreq>
 </url>
+<url>
+  <loc>https://www.movieup.cafe/inquiry/</loc>
+  <priority>0.0</priority>
+  <changefreq>yearly</changefreq>
+</url>
 
 </urlset>
