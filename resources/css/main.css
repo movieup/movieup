@@ -1184,7 +1184,7 @@ footer ul {
 	}
 	.footer_category_list {
 		width: 1000px;
-		gap: 72px;
+		gap: 8px 72px;
 	}
 	footer ul {
 		padding: 0 !important;
