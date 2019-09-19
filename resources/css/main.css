@@ -506,12 +506,14 @@ span.article_title_en {
 }
 /* 映画説明 */
 .article_movie_description {
-	display: block;
 	line-height: inherit;
 	font-size: 0.7rem;
-	padding: 4px;
+	padding: 8px;
 	margin: 4px 8px;
 	background: #eee;
+}
+
+.article_movie_description > span {
 	overflow: hidden;
 	display: -webkit-box;
 	-webkit-box-orient: vertical;
@@ -788,6 +790,14 @@ p.tab_overview {
 .scene_memo p {
 	margin: 0;
 	font-size: 0.8rem;
+}
+.b_in_scene_memo {
+	display: inline-block;
+	padding: 8px;
+	margin: 4px 0;
+	padding-left: 8px;
+	background: #eee;
+	border-left: solid 5px #0D47A0;
 }
 
 /* 単語・文法帳 */

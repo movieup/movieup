@@ -49,9 +49,11 @@
                                     <span>【映画：{{ $scene.Movie.TitleJp }}】{{ $scene.Title }}<br><span class="article_title_en">(映画原題：{{ $scene.Movie.TitleEn }})</span><br></span>
                                 </div>
                                 <!-- description -->
-                                <span class="article_movie_description">
-                                    {{ $scene.DescriptionHtml }}
-                                </span>
+                                <div class="article_movie_description">
+                                    <span>
+                                        {{ $scene.DescriptionHtml }}
+                                    </span>
+                                </div>
                             </div>
                         </a>
                     {{ end }}
@@ -78,8 +80,10 @@
                                     <span>【映画：@{ scene.titleJp }】@{ scene.sceneTitle }<br><span class="article_title_en">(映画原題：@{ scene.titleEn })</span><br></span>
                                 </div>
                                 <!-- description -->
-                                <span class="article_movie_description" v-html="scene.description">
-                                </span>
+                                <div class="article_movie_description">
+                                    <span v-html="scene.description">
+                                    </span>
+                                </div>
                             </div>
                         </a>
                     </div>
