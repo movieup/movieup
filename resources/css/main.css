@@ -745,7 +745,7 @@ p.tab_overview {
     padding: 8px 40px 0 40px;
     margin: 0;
     z-index: 3;
-    font-size: 0.9rem;
+    font-size: 1.0rem;
     line-height: 1.5;
 }
 /* シーン翻訳 - 翻訳 */
@@ -755,7 +755,7 @@ p.tab_overview {
     margin-left: 8px;
 }
 .translation_line p {
-	font-size: 0.8rem;
+	font-size: 0.9rem;
 	margin: 12px 0 8px;
 }
 /* シーン翻訳 - 区切り縦棒 */
