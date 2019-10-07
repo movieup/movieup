@@ -205,7 +205,7 @@ footer {
 
 /* ページトップタイトル（共通） */
 .main_h {
-	font-size: 1.2rem;
+	font-size: 1.3rem;
 	color: #fff;
 	padding: 16px;
 }
@@ -338,7 +338,7 @@ footer {
 }
 
 .site_message_main p {
-	font-size: 0.65rem;
+	font-size: 0.75rem;
 	padding: 0 5px;
 	margin-bottom: 0px;
 	text-align: center;
@@ -377,9 +377,9 @@ footer {
 	color: #FFFFFF;
 	margin-top: 0;
 	margin-bottom: 0;
-	padding-top: 17px;
+	padding-top: 16px;
 	padding-right: 16px;
-	font-size: 1.1rem;
+	font-size: 1.2rem;
 }
 
 /* 記事カード */
@@ -492,7 +492,7 @@ footer {
 }
 .article_movie_title > span {
 	margin-left: 8px;
-	font-size: 0.9rem;
+	font-size: 1.0rem;
 }
 span.article_title_en {
 	font-size: 0.8rem;
@@ -507,7 +507,7 @@ span.article_title_en {
 /* 映画説明 */
 .article_movie_description {
 	line-height: inherit;
-	font-size: 0.7rem;
+	font-size: 0.8rem;
 	padding: 8px;
 	margin: 4px 8px;
 	background: #eee;
@@ -563,7 +563,7 @@ span.article_title_en {
 .tags a {
 	color: #333;
 	font-size: 0.6rem;
-	padding: 3px 5px;
+	padding: 4px 8px;
 	margin: 2px 2px;
 	border: 1px solid #aaa;
 	border-radius: 12px;
@@ -619,7 +619,7 @@ p.tab_overview {
 	background: #fff;
 	padding: 8px;
 	margin: 0;
-	font-size: 0.8rem;
+	font-size: 0.9rem;
 	border-radius: 0 0 4px 4px;
 }
 .overview_tab {
@@ -664,11 +664,11 @@ p.tab_overview {
 	margin: 0px;
 }
 .casts_wrapper .character_name {
-	font-size: 0.8rem;
+	font-size: 0.9rem;
 	font-weight: bold;
 }
 .casts_wrapper .cast {
-	font-size: 0.7rem;
+	font-size: 0.8rem;
 	margin-bottom: 4px;
 }
 .casts_wrapper .cast_description {
@@ -742,7 +742,7 @@ p.tab_overview {
 
 .blockquote p {
     position: relative;
-    padding: 8px 40px;
+    padding: 8px 40px 0 40px;
     margin: 0;
     z-index: 3;
     font-size: 0.9rem;
@@ -789,7 +789,7 @@ p.tab_overview {
 }
 .scene_memo p {
 	margin: 0;
-	font-size: 0.8rem;
+	font-size: 0.9rem;
 }
 .b_in_scene_memo {
 	display: inline-block;
