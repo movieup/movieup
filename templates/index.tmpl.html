@@ -12,8 +12,7 @@
  				</div>
  				<p class="main_title"><strong>映画｜翻訳</strong></p>
  				<p>
- 					自身の英語学習のために翻訳した映画のワンシーンを記事として載せています<br>
- 					たくさんの人に楽しく英語学習が出来る材料となれば幸いです
+ 					多くの人に楽しく英語学習が出来る材料として使用していただければ幸いです。
  				</p>
  			</article>
  		</transition>
@@ -21,10 +20,21 @@
 
  	<!-- メインコンテンツ -->
  	<main>
+        <div class="about">
+            <div class="h2_wrapper"><h1 class="sub_h_top">英語の勉強のための映画翻訳サイト</h1></div>
+            <div class="about_site_top">
+                <P>
+                    当サイトでは管理人の好きな映画、もしくは英語初心者におすすめな映画のワンシーンを翻訳記事として掲載しています。<br>
+                    また、翻訳の解説や、シーン内で使用されている単語等も単語帳として記事内に載せておりますので、映画で楽しく英語学習を行っていただける内容となっております。<br>
+                    お気に入りの映画やキャラクター、俳優さんの気持ちになって英語を勉強しましょう！
+                </p>
+            </div>
+        </div>
+
  		<!-- 記事一覧 -->
         {{ $fiveList := .fiveList }}
  		<div id="news" class="top_news">
- 			<div class="h2_wrapper"><h1 class="sub_h_top">映画の新着セリフ英語翻訳</h1></div>
+ 			<div class="h2_wrapper"><h2 class="sub_h_top">映画の新着セリフ英語翻訳</h2></div>
  			<div class="article_list_wrapper">
  				<div class="article_list">
                     {{ range $scene := .scenes }}

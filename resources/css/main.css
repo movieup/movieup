@@ -382,6 +382,17 @@ footer {
 	font-size: 1.2rem;
 }
 
+/* トップ画面 メッセージ */
+.about_site_top {
+	margin: 16px 16px 0 16px;
+}
+.about_site_top p {
+	background: transparent;
+	font-size: 1.0rem;
+	color: #fff;
+	margin: 0;
+}
+
 /* 記事カード */
 .article_wrapper {
 	background-color: #333333;
@@ -1147,6 +1158,16 @@ footer ul {
 		padding-left: 72px;
 	}
 	/* 新着一覧 */
+	.about_site_top {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+	}
+	.about_site_top p {
+		width: 984px;
+		margin-right: 16px;
+	}
 	main .h2_wrapper {
 		display: flex;
 	    justify-content: center;
