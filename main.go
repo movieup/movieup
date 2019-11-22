@@ -166,9 +166,15 @@ func main() {
 
         // 辞書情報取得
         sceneDictionaries := []structs.SceneDictionary{}
-        //db.Find(&sceneDictionaries, "scene_id=?", sceneId)
-        //db.Table("users").Select("users.name, emails.email").Joins("left join emails on emails.user_id = users.id").Scan(&results)
         db.Debug().Table("tbl_scene_dictionary").Select("tbl_scene_dictionary.dictionary_id, mst_dictionary.name, mst_dictionary.description").Joins("inner join mst_dictionary on tbl_scene_dictionary.dictionary_id = mst_dictionary.dictionary_id").Where("scene_id = ?", sceneId).Order("mst_dictionary.name asc").Scan(&sceneDictionaries)
+
+        // 同映画の別シーンの一覧を取得
+        otherMovieScenes := []structs.Scene{}
+        db.Preload("Movie").Limit(10).Order("created_at desc").Find(&otherMovieScenes, "movie_id=? and scene_id!=?", movie.MovieId, sceneId)
+        // シーン詳細をタグ出力可能な形へ編集
+        for index, otherMovieScene := range otherMovieScenes {
+            otherMovieScenes[index].DescriptionHtml = getNoEscapedString(otherMovieScene.Description)
+        }
 
         // タグ一覧を取得
         tags := []structs.Tag{}
@@ -184,7 +190,9 @@ func main() {
             "movieDescription": getNoEscapedString(movie.Description),
             "sceneDescription": getNoEscapedString(scene.Description),
             "sceneDictionaries": sceneDictionaries,
-            "memo": getNoEscapedString(scene.Memo) })
+            "memo": getNoEscapedString(scene.Memo),
+            "otherMovieScenes": otherMovieScenes,
+            "fiveList": []int {1,2,3,4,5},})
     })
     // お問い合わせ
     router.GET("/inquiry/", func(context *gin.Context) {

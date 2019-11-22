@@ -107,7 +107,49 @@
                             {{ end }}
                         </div>
                     {{ end }}
+                {{ end }}
 
+                {{/* 同じ映画の別シーン一覧 */}}
+                {{ $otherMovieSceneLength := len .otherMovieScenes }}
+                {{ if ne $otherMovieSceneLength 0 }}
+                    <div class="hr_footer"><hr/></div>
+                    <!-- 記事一覧 -->
+                    {{ $fiveList := .fiveList }}
+                    <div class="h2_wrapper h2_scene"><h3 class="sub_h">映画【{{ .movie.TitleJp }}】の他の英語翻訳</h3></div>
+         			<div class="article_list_wrapper">
+         				<div class="article_list">
+                            {{ range $otherMovieScene := .otherMovieScenes }}
+                                <a href="/scenes/{{ $otherMovieScene.SceneId }}/">
+                                    <div class="article">
+                                        <!-- おすすめ度｜投稿日 -->
+                                        <div class="article_top">
+                                            <div class="article_evaluation">
+                                                <p class="article_evaluation_title">
+                                                    初心者おすすめ度
+                                                </p>
+                                                <p class="article_evaluation_values">
+                                                    {{ range $number := $fiveList }}{{ if ge $otherMovieScene.RecommendedNumber $number }}★{{ else }}☆{{ end }}{{ end }}
+                                                </p>
+                                            </div>
+                                            <div class="article_date_posted">
+                                                {{ $otherMovieScene.GetFormattedCreatedAt }}
+                                            </div>
+                                        </div>
+                                        <!-- title -->
+                                        <div class="article_movie_title">
+                                            <span>【映画：{{ $otherMovieScene.Movie.TitleJp }}】{{ $otherMovieScene.Title }}<br><span class="article_title_en">(映画原題：{{ $otherMovieScene.Movie.TitleEn }})</span><br></span>
+                                        </div>
+                                        <!-- description -->
+                                        <div class="article_movie_description">
+                                            <span>
+                                                {{ $otherMovieScene.DescriptionHtml }}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </a>
+                            {{ end }}
+         				</div>
+         			</div>
                 {{ end }}
             </div>
         </div>
