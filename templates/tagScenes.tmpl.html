@@ -1,3 +1,9 @@
+{{define "og_url"}}
+    <meta property="og:url" content="https://www.movieup.cafe/scenes/{{ .tag.TagId }}/" />
+{{end}}
+{{define "og_description"}}
+    <meta property="og:description" content="「{{ .tag.Name }}」タグがついた映画翻訳記事の一覧です。" />
+{{end}}
 {{define "title"}}【{{ .tag.Name }}】で学ぶ英語 |映画で楽しく英会話学習{{end}}
 {{define "description"}}「{{ .tag.Name }}」タグが付く映画のセリフ翻訳記事一覧です。{{end}}
 
