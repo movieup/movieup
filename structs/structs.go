@@ -26,6 +26,7 @@ type Scene struct {
     SceneId             int         `gorm:"column:scene_id"`
     RecommendedNumber   int         `gorm:"column:recommended_number"`
     Title               string      `gorm:"column:title"`
+    ShortTitle          string      `gorm:"column:short_title"`
     Description         string      `gorm:"column:description"`
     DescriptionHtml     template.HTML
     Memo                string      `gorm:"column:memo"`
