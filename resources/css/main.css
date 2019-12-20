@@ -810,6 +810,11 @@ p.tab_overview {
 	background: #eee;
 	border-left: solid 5px #0D47A0;
 }
+/* メモ内の本文からの引用英語部分 */
+mark.mark_in_scene_memo {
+	background: #eee;
+	padding: 2px 0;
+}
 
 /* 単語・文法帳 */
 p.dictionary_description {
