@@ -824,6 +824,25 @@ p.dictionary_description {
 	margin-left: 8px;
 }
 
+/* ページ内リンク */
+.inner_link a {
+	position: relative;
+}
+.inner_link a::after {
+	content: '';
+    position: absolute;
+    display: block;
+    top: 50%;
+    left: -17px;
+    width: 6px;
+    height: 6px;
+    margin: -5px 0 0;
+    border-bottom: 2px solid #D6687B;
+    border-right: 2px solid #D6687B;
+    -webkit-transform: translate(0, 0) rotate(45deg);
+    transform: translate(0px, 0px) rotate(45deg);
+}
+
 /*
  * 当サイトについて
  */
@@ -964,6 +983,11 @@ footer ul {
 	font-size: 0.6rem;
 	text-align: center;
 	margin-top: 8px;
+}
+
+/* utility */
+.mt-16 {
+	margin-top: 16px;
 }
 
 /* -------------------------------------------- */

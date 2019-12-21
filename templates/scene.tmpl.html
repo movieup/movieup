@@ -64,6 +64,11 @@
 
                 <div class="hr_footer"><hr/></div>
 
+                {{/* セリフ翻訳解説へのリンク */}}
+                <div class="scene_wrapper inner_link mt-16">
+                    <a href="#english_description">英語解説のみ見る場合はこちら</a>
+                </div>
+
                 {{/* セリフ翻訳 */}}
                 <div class="h2_wrapper h2_scene"><h2 class="sub_h">セリフ英語翻訳</h2></div>
                 <div class="scene_wrapper">
@@ -108,7 +113,7 @@
                     <div class="hr_footer"><hr/></div>
 
                     {{/* 翻訳メモ */}}
-                    <div class="h2_wrapper h2_scene"><h3 class="sub_h">セリフ翻訳解説</h3></div>
+                    <div class="h2_wrapper h2_scene"><h3 class="sub_h" id="english_description">セリフ翻訳解説</h3></div>
                     <div class="scene_memo">
                         <p>{{ .memo }}</p>
                     </div>
