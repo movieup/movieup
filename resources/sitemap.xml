@@ -58,7 +58,7 @@
   <changefreq>weekly</changefreq>
 </url>
 <url>
-  <loc>https://www.movieup.cafe/tags/1/</loc>
+  <loc>https://www.movieup.cafe/scenes/11/</loc>
   <priority>1.0</priority>
   <changefreq>weekly</changefreq>
 </url>
@@ -75,6 +75,11 @@
 <url>
   <loc>https://www.movieup.cafe/inquiry/</loc>
   <priority>0.0</priority>
+  <changefreq>yearly</changefreq>
+</url>
+<url>
+  <loc>https://www.movieup.cafe/tags/1/</loc>
+  <priority>1.0</priority>
   <changefreq>weekly</changefreq>
 </url>
 <url>
@@ -93,9 +98,9 @@
   <changefreq>weekly</changefreq>
 </url>
 <url>
-  <loc>https://www.movieup.cafe/inquiry/</loc>
-  <priority>0.0</priority>
-  <changefreq>yearly</changefreq>
+  <loc>https://www.movieup.cafe/tags/5/</loc>
+  <priority>1.0</priority>
+  <changefreq>weekly</changefreq>
 </url>
 
 </urlset>
