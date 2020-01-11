@@ -2,10 +2,10 @@
     <meta property="og:url" content="https://www.movieup.cafe" />
 {{end}}
 {{define "og_description"}}
-    <meta property="og:description" content="映画に使用されている単語・文法一覧。映画のセリフ翻訳記事を見て楽しく英会話を勉強しよう！" />
+    <meta property="og:description" content="「{{ .dictionary.Name }}」の意味と、使用されている映画ワンシーン" />
 {{end}}
-{{define "title"}}「{{ .dictionary.Name }}」が使われている映画ワンシーン | MOViE UP{{end}}
-{{define "description"}}{{ .dictionary.Name }}を使用している映画の翻訳記事です。映画のワンシーンで生きた英語を確認しましょう。{{end}}
+{{define "title"}}「{{ .dictionary.Name }}」の意味と、使用されている映画のワンシーン | MOViE UP{{end}}
+{{define "description"}}{{ .dictionary.Name }}の意味と、使用している映画の翻訳記事です。映画のワンシーンで生きた英語を確認しましょう。{{end}}
 
  {{define "content"}}
  	<!-- サイトメッセージ -->
