@@ -295,6 +295,58 @@ func main() {
 
         context.HTML(http.StatusOK, "base.tmpl.html", gin.H{ "tags": tags })
     })
+    // 単語・文法一覧
+    router.GET("/wordbook/", func(context *gin.Context) {
+        html := template.Must(template.ParseFiles(envConf.Etc.SrcPath + "templates/base.tmpl.html", envConf.Etc.SrcPath + "templates/wordbook.tmpl.html"))
+        router.SetHTMLTemplate(html)
+
+        db := gormConnect()
+        defer db.Close()
+
+        // 辞書一覧を取得
+        dictionary := []structs.Dictionary{}
+        db.Order("name asc").Find(&dictionary)
+
+        // タグ一覧を取得
+        tags := []structs.Tag{}
+        db.Find(&tags)
+
+        context.HTML(http.StatusOK, "base.tmpl.html", gin.H{ "tags": tags, "dictionaryList": dictionary })
+    })
+    // 単語・文法詳細画面
+    router.GET("/wordbook/:dictionaryId/", func(context *gin.Context) {
+        // パラメータ取得
+        dictionaryId, _ := strconv.Atoi(context.Param("dictionaryId"))
+
+        html := template.Must(template.ParseFiles(envConf.Etc.SrcPath + "templates/base.tmpl.html", envConf.Etc.SrcPath + "templates/word.tmpl.html"))
+        router.SetHTMLTemplate(html)
+
+        db := gormConnect()
+        defer db.Close()
+
+        // 辞書を取得
+        dictionary := structs.Dictionary{}
+        db.Preload("SceneDictionaries").Find(&dictionary, "dictionary_id=?", dictionaryId)
+
+        // 辞書に紐づくscene_idリストを取得
+        var sceneIds = []int{}
+        for _, sceneDictionary := range dictionary.SceneDictionaries {
+            sceneIds = append(sceneIds, sceneDictionary.SceneId)
+        }
+        // scene_idを持つシーンを全て取得
+        scenes := []structs.Scene{}
+        db.Preload("Movie").Where("scene_id in (?)", sceneIds).Preload("Movie").Find(&scenes)
+        // シーン詳細をタグ出力可能な形へ編集
+        for index, scene := range scenes {
+            scenes[index].DescriptionHtml = getNoEscapedString(scene.Description)
+        }
+
+        // タグ一覧を取得
+        tags := []structs.Tag{}
+        db.Find(&tags)
+
+        context.HTML(http.StatusOK, "base.tmpl.html", gin.H{ "tags": tags, "dictionary": dictionary, "scenes": scenes, "fiveList": []int {1,2,3,4,5},  })
+    })
 
     router.Run(":8080")
 }

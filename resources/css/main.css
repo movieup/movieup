@@ -365,6 +365,11 @@ footer {
 	opacity: 0;
 }
 
+/* コンテンツ内のセンター寄せ（デザイン当てなし） */
+.center_in_content {
+	margin: 16px 16px 0 16px;
+}
+
 /* 記事一覧 */
 .top_news, .about {
 	margin-top: -48px;
@@ -923,6 +928,42 @@ p.dictionary_description {
 	appearance: none;
 }
 
+/*
+ * 単語・文法帳
+ */
+.wordbook_list_wrapper {
+	margin-top: 24px;
+}
+.wordbook_list a {
+	color: #fff;
+	font-size: 1.0rem;
+	position: relative;
+	/*display: inline-block;*/
+	width: 100%;
+	text-decoration: underline;
+}
+
+.wordbook_list a::after {
+	content: '';
+	position: absolute;
+	display: block;
+	top: 50%;
+	right: -16px;
+	width: 6px;
+	height: 6px;
+	margin: -2px 0 0;
+	border-bottom: 2px solid #D6687B;
+	border-right: 2px solid #D6687B;
+	-webkit-transform: translate(0, 0) rotate(-45deg);
+	transform: translate(0px, 0px) rotate(-45deg);
+}
+.word p {
+	background: #fff;
+	font-size: 0.9rem;
+	padding: 8px;
+	margin: 4px 0 16px 0;
+}
+
 /* フッター */
 footer h3 {
 	margin-top: 0;
@@ -1071,6 +1112,16 @@ footer ul {
 	.scene_line {
 		width: 600px;
 	}
+	/* 単語・文法一覧 */
+	.wordbook_list {
+		display: grid;
+		gap: 10px;
+		grid-template-columns: repeat(2, minmax(200px, 1fr));
+	}
+	.wordbook_list p {
+		padding-right: 16px;
+	}
+
 	/* フッター */
 	.footer_category_list {
 		display: grid;
@@ -1218,6 +1269,17 @@ footer ul {
 		width: 1000px;
 	}
 
+	/* コンテンツ内のセンター寄せ（デザイン当てなし） */
+	.center_in_content {
+		display: flex;
+	    justify-content: center;
+	    align-items: center;
+	    flex-direction: column;
+	}
+	.center_in_content_inner {
+		width: 1000px;
+	}
+
 	/* 当サイトについて */
 	.about_content {
 		display: flex;
@@ -1234,6 +1296,11 @@ footer ul {
 	.about_content_src {
 		width: 1000px;
 		font-size: 0.9rem;
+	}
+
+	/* 単語・文法一覧 */
+	.wordbook_list {
+		grid-template-columns: repeat(3, minmax(200px, 1fr));
 	}
 
 	/* フッター */

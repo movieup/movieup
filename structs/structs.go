@@ -90,11 +90,20 @@ type SceneDictionary struct {
     MovieId int `gorm:"column:movie_id;primary_key"`
     SceneId int `gorm:"column:scene_id;primary_key"`
     DictionaryId int `gorm:"column:dictionary_id;primary_key"`
-    //Dictionary  Dictionary `gorm:"foreignkey:dictionary_id;association_foreignkey:dictionary_id"`
-    // mst_dictionaryをjoinでひっぱってくるためName、Descriptionをここへ定義
+
+    // mst_dictionaryをjoinでひっぱってくるためName、Descriptionを別途定義
     Name string
     Description    string
 }
 func (m *SceneDictionary) TableName() string {
 	return "tbl_scene_dictionary"
+}
+type Dictionary struct {
+    DictionaryId    int `gorm:"column:dictionary_id;primary_key"`
+    Name            string `gorm:"column:name"`
+    Description     string `gorm:"column:description"`
+    SceneDictionaries []SceneDictionary `gorm:"foreignkey:dictionary_id;association_foreignkey:dictionary_id"`
+}
+func (m *Dictionary) TableName() string {
+	return "mst_dictionary"
 }

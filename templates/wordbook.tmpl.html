@@ -1,0 +1,60 @@
+{{define "og_url"}}
+    <meta property="og:url" content="https://www.movieup.cafe" />
+{{end}}
+{{define "og_description"}}
+    <meta property="og:description" content="映画に使用されている単語・文法一覧。映画のセリフ翻訳記事を見て楽しく英会話を勉強しよう！" />
+{{end}}
+{{define "title"}}単語・文法一覧 | MOViE UP{{end}}
+{{define "description"}}当サイトで紹介している映画のシーン内で使用されている単語・文法の一覧です。映画のワンシーンで生きた英語を確認しましょう。{{end}}
+
+ {{define "content"}}
+ 	<!-- サイトメッセージ -->
+ 	<div id="site_message" class="site_message_main_wrapper">
+ 		<transition name="fade">
+ 			<article v-if="show" class="site_message_main">
+                <span><strong>MOViE UP</strong></span>
+ 				<div class="site_message_main_img">
+ 					<img src="/resources/images/icon_reverse_black.svg" />
+ 				</div>
+ 				<p class="main_title"><strong>映画｜翻訳</strong></p>
+ 				<p>
+ 					自身の英語学習のために翻訳した映画のワンシーンを記事として載せています<br>
+ 					たくさんの人に楽しく英語学習が出来る材料となれば幸いです
+ 				</p>
+ 			</article>
+ 		</transition>
+ 	</div>
+
+ 	<!-- メインコンテンツ -->
+ 	<main>
+        <div class="about">
+            <div class="h2_wrapper"><h1 class="sub_h_top">単語・文法一覧 | 英語・意味</h1></div>
+            <div class="about_content">
+                <P>
+                    当サイトで紹介している映画のシーン内で使用されている単語・文法の一覧です。<br>
+                    映画のワンシーンで是非生きた英語を確認してみてください。
+                </p>
+            </div>
+            <div class="center_in_content">
+                <div class="center_in_content_inner">
+                    <div class="wordbook_list_wrapper">
+                        <div class="wordbook_list">
+                            {{ range $dictionary := .dictionaryList }}
+                                <div class="word">
+                                    <a href="/wordbook/{{ $dictionary.DictionaryId }}/" target="_blank">{{ $dictionary.Name }}</a>
+                                    <p>{{ $dictionary.Description }}</p>
+                                </div>
+                            {{ end }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="hr_footer"><hr/></div>
+ 	</main>
+{{end}}
+
+{{define "script_prebody"}}
+    <script src="/resources/js/siteMessage.js"></script>
+{{end}}

@@ -1,0 +1,79 @@
+{{define "og_url"}}
+    <meta property="og:url" content="https://www.movieup.cafe" />
+{{end}}
+{{define "og_description"}}
+    <meta property="og:description" content="映画に使用されている単語・文法一覧。映画のセリフ翻訳記事を見て楽しく英会話を勉強しよう！" />
+{{end}}
+{{define "title"}}「{{ .dictionary.Name }}」が使われている映画ワンシーン | MOViE UP{{end}}
+{{define "description"}}{{ .dictionary.Name }}を使用している映画の翻訳記事です。映画のワンシーンで生きた英語を確認しましょう。{{end}}
+
+ {{define "content"}}
+ 	<!-- サイトメッセージ -->
+ 	<div id="site_message" class="site_message_main_wrapper">
+ 		<transition name="fade">
+ 			<article v-if="show" class="site_message_main">
+                <span><strong>MOViE UP</strong></span>
+ 				<div class="site_message_main_img">
+ 					<img src="/resources/images/icon_reverse_black.svg" />
+ 				</div>
+ 				<p class="main_title"><strong>映画｜翻訳</strong></p>
+ 				<p>
+ 					自身の英語学習のために翻訳した映画のワンシーンを記事として載せています<br>
+ 					たくさんの人に楽しく英語学習が出来る材料となれば幸いです
+ 				</p>
+ 			</article>
+ 		</transition>
+ 	</div>
+
+ 	<!-- メインコンテンツ -->
+ 	<main>
+        <div class="about">
+            <div class="h2_wrapper"><h1 class="sub_h_top">「{{ .dictionary.Name }}」の意味</h1></div>
+            <div class="about_content">
+                <p>{{ .dictionary.Description }}</p>
+            </div>
+            <div class="h2_wrapper" style="margin-top: 24px;"><h2 class="sub_h_top">「{{ .dictionary.Name }}」が使われている映画のワンシーン</h1></div>
+            {{ $fiveList := .fiveList }}
+            <div class="article_list_wrapper">
+ 				<div class="article_list">
+                    {{ range $scene := .scenes }}
+                        <a href="/scenes/{{ $scene.SceneId }}/">
+                            <div class="article">
+                                <!-- おすすめ度｜投稿日 -->
+                                <div class="article_top">
+                                    <div class="article_evaluation">
+                                        <p class="article_evaluation_title">
+                                            初心者おすすめ度
+                                        </p>
+                                        <p class="article_evaluation_values">
+                                            {{ range $number := $fiveList }}{{ if ge $scene.RecommendedNumber $number }}★{{ else }}☆{{ end }}{{ end }}
+                                        </p>
+                                    </div>
+                                    <div class="article_date_posted">
+                                        {{ $scene.GetFormattedCreatedAt }}
+                                    </div>
+                                </div>
+                                <!-- title -->
+                                <div class="article_movie_title">
+                                    <span>【映画：{{ $scene.Movie.TitleJp }}】{{ $scene.Title }}<br><span class="article_title_en">(映画原題：{{ $scene.Movie.TitleEn }})</span><br></span>
+                                </div>
+                                <!-- description -->
+                                <div class="article_movie_description">
+                                    <span>
+                                        {{ $scene.DescriptionHtml }}
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
+                    {{ end }}
+ 				</div>
+ 			</div>
+        </div>
+
+        <div class="hr_footer"><hr/></div>
+ 	</main>
+{{end}}
+
+{{define "script_prebody"}}
+    <script src="/resources/js/siteMessage.js"></script>
+{{end}}
