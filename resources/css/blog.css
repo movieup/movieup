@@ -1,0 +1,121 @@
+/* --------------------------------------------- */
+/* ▼モバイルファースト (全環境に共通のデザイン) */
+/* --------------------------------------------- */
+.content_wrapper {
+	margin-top: -48px;
+	margin-bottom: 8px;
+	width: 100%;
+	padding-top: 75px;
+}
+.content_wrapper h1 {
+	color: #FFFFFF;
+	margin-top: 0;
+	margin-bottom: 0;
+	padding-top: 16px;
+	padding-right: 16px;
+	font-size: 1.3rem;
+}
+.content {
+	margin: 16px 16px 0 16px;
+	background: #fff;
+	padding: 16px;
+}
+.content p {
+	font-size: 1.1rem;
+	margin: 0;
+}
+
+/* 記事の見出し一覧 */
+.topics {
+	border: solid #0D47A0 1px;
+	margin: 16px 0;
+	font-size: 1.0rem;
+	text-decoration: underline;
+	color: #333;
+}
+.topics a {
+	color: #333;
+}
+.topics ul {
+	list-style-type: none;
+}
+.topics > ul {
+	list-style-type: none;
+	margin: 16px 0;
+	padding: 0px;
+	padding-inline-start: 0;
+}
+.topics > ul > li {
+	font-weight: bold;
+}
+.topics ul ul {
+	margin-bottom: 16px;
+}
+.topics ul li {
+	margin-left: 24px;
+	margin-top: 8px;
+}
+.topics_head {
+	background: #0D47A0;
+	color: #fff;
+	padding: 8px;
+}
+
+/* h2 */
+.h2_blog {
+	padding: 8px;
+	margin: 32px 0 24px 0;
+	padding-left: 8px;
+	background: #D6687B;
+	color: #fff;
+	font-size: 1.2rem;
+	width: auto;
+}
+
+/* h3 */
+.h3_blog {
+	display: inline-block;
+	padding: 8px;
+	margin: 32px 0 16px 0;
+	padding-left: 8px;
+	font-size: 1.2rem;
+	border-left: solid 5px #D6687B;
+}
+
+/* コンテンツ内画像 */
+.img_in_content img {
+	max-width: 100%;
+	height: auto;
+	margin-bottom: 8px;
+}
+
+/* -------------------------------------------- */
+/* ▼タブレット用 */
+/* -------------------------------------------- */
+@media all and (min-width: 768px) {
+	.content_wrapper {
+		margin-top: -32px;
+		padding-top: 56px;
+	}
+}
+
+/* ------------------------------------ */
+/* ▼PC用 */
+/* ------------------------------------ */
+/*@media all and (min-width: 920px) {*/
+@media all and (min-width: 1000px) {
+	.content_wrapper {
+		margin-top: -32px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+	}
+	.content {
+		width: 984px;
+		margin-right: 16px;
+		margin-left: 16px;
+	}
+	.content p {
+	}
+}

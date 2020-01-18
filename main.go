@@ -47,7 +47,8 @@ func main() {
     router.Static("/resources", envConf.Etc.SrcPath + "resources")
 
     // viewテンプレートを読み込み
-    router.LoadHTMLGlob(envConf.Etc.SrcPath + "templates/*")
+    router.LoadHTMLGlob(envConf.Etc.SrcPath + "templates/*.tmpl.html")
+    router.LoadHTMLGlob(envConf.Etc.SrcPath + "templates/blog/*.tmpl.html")
 
     // トップページ（記事新着一覧）
     router.GET("/", func(context *gin.Context) {
@@ -346,6 +347,23 @@ func main() {
         db.Find(&tags)
 
         context.HTML(http.StatusOK, "base.tmpl.html", gin.H{ "tags": tags, "dictionary": dictionary, "scenes": scenes, "fiveList": []int {1,2,3,4,5},  })
+    })
+    // ブログ独自画面
+    router.GET("/blog/:blogKey/", func(context *gin.Context) {
+        // パラメータ取得
+        blogKey := context.Param("blogKey")
+
+        html := template.Must(template.ParseFiles(envConf.Etc.SrcPath + "templates/base.tmpl.html", envConf.Etc.SrcPath + "templates/blog/" + blogKey + ".tmpl.html"))
+        router.SetHTMLTemplate(html)
+
+        db := gormConnect()
+        defer db.Close()
+
+        // タグ一覧を取得
+        tags := []structs.Tag{}
+        db.Find(&tags)
+
+        context.HTML(http.StatusOK, "base.tmpl.html", gin.H{ "tags": tags })
     })
 
     router.Run(":8080")

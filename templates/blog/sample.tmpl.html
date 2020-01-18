@@ -1,0 +1,105 @@
+{{define "og_url"}}
+    <meta property="og:url" content="https://www.movieup.cafe" />
+{{end}}
+{{define "og_description"}}
+    <meta property="og:description" content="映画のセリフ翻訳記事を見て楽しく英会話を勉強しよう！" />
+{{end}}
+{{define "title"}}映画で英語学習！～ディズニーのセリフはやはりわかりやすい～{{end}}
+{{define "description"}}英語学習中の方、また自身の学習ために映画のワンシーンのセリフ翻訳を記事として載せています。映画としても英語学習としてもおすすめのものを厳選して載せていす。楽しく英語学習する材料にお使いください。{{end}}
+{{define "head"}}
+    <meta name="robots" content="noindex">
+    <link rel="stylesheet" href="/resources/css/blog.css">
+{{end}}
+
+ {{define "content"}}
+ 	<!-- サイトメッセージ -->
+ 	<div id="site_message" class="site_message_main_wrapper">
+ 		<transition name="fade">
+ 			<article v-if="show" class="site_message_main">
+                <span><strong>MOViE UP</strong></span>
+ 				<div class="site_message_main_img">
+ 					<img src="/resources/images/icon_reverse_black.svg" />
+ 				</div>
+ 				<p class="main_title"><strong>映画｜翻訳</strong></p>
+ 				<p>
+ 					映画で英語を学習中の管理人が気づいたことをブログで綴っています。<br>
+                    映画のワンシーンを初心者向け翻訳している記事もあるので是非ご覧ください。
+ 				</p>
+ 			</article>
+ 		</transition>
+ 	</div>
+
+ 	<!-- メインコンテンツ -->
+ 	<main>
+        <div class="content_wrapper">
+            <div class="h2_wrapper"><h1 class="sub_h_top">映画で英語学習！～ディズニーのセリフはやはりわかりやすい～</h1></div>
+            <div class="content">
+                <P>
+                    こんにちは！英語勉強中の管理人です！<br>
+                    映画の初心者向け翻訳記事を作ってて気づいたシリーズより、「ディズニーのアニメ映画」のセリフが他の実写映画などに比べてはるかにわかりやすく、英語学習中の方におすすめな理由を解説いたします。<br>
+                </p>
+                <div class="topics">
+                    <p class="topics_head">記事見出し</p>
+                    <ul>
+                        <li><a href="#aaa">ディズニーが英語初心者におすすめな理由</a></li>
+                        <ul>
+                            <li><a href="#aaa">文の短さが程よい</a></li>
+                            <li><a href="#aaa">単語のレベルが程よい</a></li>
+                            <li><a href="#aaa">セリフスピードが程よい</a></li>
+                        </ul>
+                        <li><a href="#aaa">１文が短いほど連続して聞き取りやすい</a></li>
+                        <ul>
+                            <li><a href="#aaa">他の実写映画と比較</a></li>
+                            <li><a href="#aaa">連続して短いセリフが続く</a></li>
+                        </ul>
+                    </ul>
+                </div>
+                <div style="width: 100%;">
+                    <!-- ad -->
+                    <ins class="adsbygoogle"
+                         style="display:block; text-align:center;"
+                         data-ad-layout="in-article"
+                         data-ad-format="fluid"
+                         data-ad-client="ca-pub-1841361625670297"
+                         data-ad-slot="1809173795"></ins>
+                    <script>
+                         (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+
+                <h2 class="h2_blog">ディズニーが英語初心者におすすめな理由</h2>
+                <p>
+                    まずはディズニーが英語初心者におすすめな理由を簡単にご説明します。
+                </p>
+
+                <h3 class="h3_blog">文の短さが程よい</h3>
+                <p class="img_in_content">
+                    <img src="/resources/images/blog/short.jpg" alt="短い様子">
+                </p>
+                <p>
+                    一つ目の理由は文章の短さです。<br>
+                    ディズニーのセリフは一つ一つの文章が短いものが多くあるため、セリフとセリフの間に意味の理解の整理がしやすいのです。<br>
+                    試しに比較してみましょう。<br>
+                    まずはディズニー代表としてこちらのシーンから<br>
+                    <!-- ここにぎゅーっと抱きしめての記事 -->
+                    <a href="https://www.movieup.cafe/scenes/4/" target="_blank">
+                        <div class="link_in_site">
+
+                        </div>
+                    </a>
+
+                    このシーンのセリフを文毎に区切った場合の平均単語数は、四捨五入してなんと「4単語」！<br>
+                    平均4単語であれば英会話慣れしていない人でもすぐに脳で整理出来ますね！<br>
+                    <br>
+                    比較対象として私の大好きな映画ララランドのこちらのシーンを見てみましょう。<br>
+                </p>
+            </div>
+        </div>
+
+        <div class="hr_footer"><hr/></div>
+ 	</main>
+{{end}}
+
+{{define "script_prebody"}}
+    <script src="/resources/js/siteMessage.js"></script>
+{{end}}
