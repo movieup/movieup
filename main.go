@@ -349,7 +349,7 @@ func main() {
         context.HTML(http.StatusOK, "base.tmpl.html", gin.H{ "tags": tags, "dictionary": dictionary, "scenes": scenes, "fiveList": []int {1,2,3,4,5},  })
     })
     // ブログ独自画面
-    router.GET("/blog/:blogKey/", func(context *gin.Context) {
+    router.GET("/blogs/:blogKey/", func(context *gin.Context) {
         // パラメータ取得
         blogKey := context.Param("blogKey")
 
