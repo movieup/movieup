@@ -83,7 +83,7 @@ func main() {
 
         // シーン一覧を取得
         scenes := []structs.Scene{}
-        db.Preload("Movie").Limit(4).Offset(2 * (pageNo - 1)).Order("created_at desc").Find(&scenes)
+        db.Preload("Movie").Limit(4).Offset(8 * (pageNo - 1)).Order("created_at desc").Find(&scenes)
         // 作成日を画面表示用に整形
         copiedScenes := []structs.Scene{}
         for _, scene := range scenes {
