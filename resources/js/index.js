@@ -13,6 +13,8 @@ var vueNews = new Vue({
 	                .then(function (response) {
 						response.data.scenes.forEach(scene => {
 							vueNews.scenes.push({
+								// シーンID
+			                    sceneId: scene.SceneId,
 								// 作成日
 			                    createdAt: scene.CreatedAtString,
 			                    // 初心者おすすめ度
@@ -39,7 +41,7 @@ var vueNews = new Vue({
 		},
 		// シーン詳細画面へ遷移
 		moveToScene: function(scene) {
-			window.location.href = "/scenes/" + scene.id + "/";
+			window.location.href = "/scenes/" + scene.sceneId + "/";
 		},
 	},
 })
