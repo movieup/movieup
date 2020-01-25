@@ -60,7 +60,7 @@ func main() {
 
         // シーン一覧を取得
         scenes := []structs.Scene{}
-        db.Preload("Movie").Limit(10).Order("created_at desc").Find(&scenes)
+        db.Preload("Movie").Limit(8).Order("created_at desc").Find(&scenes)
         // シーン詳細をタグ出力可能な形へ編集
         for index, scene := range scenes {
             scenes[index].DescriptionHtml = getNoEscapedString(scene.Description)
