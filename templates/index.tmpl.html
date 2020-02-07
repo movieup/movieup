@@ -33,7 +33,9 @@
                 <P>
                     当サイトでは管理人の好きな映画、もしくは英語初心者におすすめな映画のワンシーンを翻訳記事として掲載しています。<br>
                     また、翻訳の解説や、シーン内で使用されている単語等も単語帳として記事内に載せておりますので、映画で楽しく英語学習を行っていただける内容となっております。<br>
-                    お気に入りの映画やキャラクター、俳優さんの気持ちになって英語を勉強しましょう！
+                    お気に入りの映画やキャラクター、俳優さんの気持ちになって英語を勉強しましょう！<br>
+                    <br>
+                    2020年より映画に関する英語学習についてのブログを始めました。合わせてご参照ください！
                 </p>
             </div>
         </div>
@@ -41,7 +43,41 @@
  		<!-- 記事一覧 -->
         {{ $fiveList := .fiveList }}
  		<div id="news" class="top_news">
- 			<div class="h2_wrapper"><h2 class="sub_h_top">映画の新着セリフ英語翻訳</h2></div>
+            <div class="h2_wrapper"><h2 class="sub_h_top">映画に関する英語学習ブログ一覧</h2></div>
+            <div class="article_list_wrapper">
+                <div class="article_list">
+                    <a href="/blogs/searchwords/">
+                        <div class="article">
+                            <p class="article_evaluation_title"></p>
+                            <div class="article_date_posted">2020/02/07</div>
+                            <div class="article_movie_title">
+                                <span>映画で英語学習！英語初級者がググった映画で使われるフレーズ集＆おすすめ書籍ご紹介</span></span>
+                            </div>
+                            <div class="article_movie_description">
+                                <span>
+                                    英語の勉強中に英会話初心者が調べたフレーズをまとめてみました。同じく英語学習中の方は必見です！
+                                </span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="/blogs/disneyreason/">
+                        <div class="article">
+                            <p class="article_evaluation_title"></p>
+                            <div class="article_date_posted">2020/01/24</div>
+                            <div class="article_movie_title">
+                                <span>映画で英語学習！ディズニーが英会話初心者に適切！その理由とおすすめ映画4選</span></span>
+                            </div>
+                            <div class="article_movie_description">
+                                <span>
+                                    ディズニー映画が英語初心者の学習に最適な理由をご説明します。また、数あるディズニー映画より英語学習に特におすすめな作品を厳選してご紹介しています。ディズニー映画で楽しく英語を学びましょう！
+                                </span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+ 			<div class="h2_wrapper"><h2 class="sub_h_top">映画のセリフ英語翻訳一覧</h2></div>
  			<div class="article_list_wrapper">
  				<div class="article_list">
                     {{ range $scene := .scenes }}
@@ -108,9 +144,11 @@
  			</div>
 
  			<!-- more-->
+            {{/* 記事がたまってきたらmain.goの.Limit(10)を変更してこのコメントアウトを戻す
  			<div class="next_article_list">
  				<a href="#" onclick="return false;" @click="getNextArticles">もっと見る</a>
  			</div>
+            */}}
  		</div>
 
         <div class="about_site_top">

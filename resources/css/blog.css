@@ -52,7 +52,7 @@
 	margin-bottom: 16px;
 }
 .topics ul li {
-	margin-left: 24px;
+	margin-left: 16px;
 	margin-top: 8px;
 	margin-right: 8px;
 }
@@ -60,6 +60,12 @@
 	background: #0D47A0;
 	color: #fff;
 	padding: 8px;
+}
+
+/* 楽天アフィリエイト紹介 */
+.rakuten_affiliate_link a {
+	color: #1a0dab !important;
+	text-decoration: underline;
 }
 
 /* h2 */
@@ -162,9 +168,26 @@ h4.h4_in_content {
 	border: solid #888 1px;
 }
 
+/* searchwordsページ独自 */
+.searchwords_movie_titles {
+	margin: 32px 0 8px 0;
+	border-radius: 8px;
+	border: solid #D6687B 3px;
+	padding: 12px;
+}
+.h3_blog_searchwords {
+	margin: 16px 0;
+}
+.searchwords_meaning {
+	margin: 0 8px 16px 0;
+}
+
 /* ユーティリティ */
 .mt-8 {
 	margin-top: 8px !important;
+}
+.mt-32 {
+	margin-top: 32px !important;
 }
 .mb-24 {
 	margin-bottom: 24px !important;
