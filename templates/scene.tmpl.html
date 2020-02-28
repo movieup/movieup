@@ -6,7 +6,9 @@
 {{end}}
 {{define "title"}}映画で楽しく英語学習！{{ .scene.ShortTitle }}{{end}}
 {{define "description"}}映画「{{ .movie.TitleJp }}」シーンのセリフ翻訳（{{ .scene.Title }}）。{{ .scene.Description }}{{end}}
-{{define "head"}}{{end}}
+{{define "head"}}
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+{{end}}
 
  {{define "content"}}
 
@@ -72,6 +74,36 @@
 
                 {{/* セリフ翻訳 */}}
                 <div class="h2_wrapper h2_scene"><h2 class="sub_h">セリフ英語翻訳</h2></div>
+
+                {{/* リスニング機能 */}}
+                <div class="scene_wrapper listening mt-16">
+                    <input type="checkbox" id="menu_listening" />
+                    <label class="menu_listening" for="menu_listening">リスニング機能で学習</label>
+                    <div class="listening_play_wapper">
+                        <div class="listening_play">
+                            <div class="listening_speed">
+                                <select id="speed">
+                                    <option value="low">遅</option>
+                                    <option value="normal" selected>並</option>
+                                    <option value="high">速</option>
+                                </select>
+                            </div>
+                            <div class="listening_start">
+                                <button onclick="speakEn()"><i class="fa fa-play-circle" aria-hidden="true"></i> セリフのリスニング再生<br>(英語のみ)</button>
+                                <button onclick="speakEnAndJp()"><i class="fa fa-play-circle" aria-hidden="true"></i> セリフのリスニング再生<br>(英語 + 日本語訳)</button>
+                            </div>
+                            <div class="listening_stop">
+                                <button onclick="stop()"><i class="fa fa-stop-circle" aria-hidden="true"></i> リスニング停止</button>
+                            </div>
+                            <div class="listening_alert">
+                                <p>※セリフを自動音声で読み上げる機能です。</p>
+                                <p>※実際の映画のセリフを再生しているわけでなくJavascriptという技術で再生をしています。</p>
+                                <p>※自動再生のため適切な発音ではないことがあります。またお使いのブラウザによっても差異が出ることがあります。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="scene_wrapper">
                     {{ $sceneDetailLengthMax := (len .sceneDetails) }}
                     {{ range $index, $sceneDetail := .sceneDetails }}
@@ -202,5 +234,76 @@
     [].forEach.call(document.querySelectorAll('.adsbygoogle'), function(){
         (adsbygoogle = window.adsbygoogle || []).push({});
     });
+    </script>
+
+    <script>
+        if (!('speechSynthesis' in window)) {
+            // 読み上げ機能がブラウザ非対応の場合機能を非表示にする
+            const listening = document.getElementByClassName("listening");
+            listening[0].style.display ="none";
+        }
+
+        // リスニング機能（英語のみ）
+        var quoteEn = "";
+        {{ range $index, $sceneDetail := .sceneDetails }}
+            {{ if ne $sceneDetail.Quote "" }}
+                quoteEn += "{{ $sceneDetail.Quote }} ";
+            {{ end }}
+        {{ end }}
+
+        // リスニング（英語）スタート
+        function speakEn()
+        {
+            var uttr = new SpeechSynthesisUtterance();
+            uttr.text = quoteEn;
+            uttr.rate = getRate();
+            uttr.lang = "en-US";
+            speechSynthesis.speak(uttr);
+        }
+
+        // リスニング機能（英語 + 日本語）
+        var uttrEn = [];
+        var uttrJp = [];
+        {{ $count := 0 }}
+        var index = 0;
+        {{ range $index, $sceneDetail := .sceneDetails }}
+            {{ if ne $sceneDetail.Quote "" }}
+                uttrEn[index] = new SpeechSynthesisUtterance();
+                uttrEn[index].lang = "en-US";
+                uttrEn[index].text = "{{ $sceneDetail.Quote }} ";
+
+                uttrJp[index] = new SpeechSynthesisUtterance();
+                uttrJp[index].lang = "ja-JP";
+                uttrJp[index].text = "{{ $sceneDetail.Translated }} ";
+                index++;
+            {{ end }}
+        {{ end }}
+
+        // リスニング機能（英語 + 日本語）スタート
+        function speakEnAndJp()
+        {
+            var rate = getRate();
+            for (let i = 0; i < uttrEn.length; i++)
+            {
+                uttrEn[i].rate = rate;
+                uttrJp[i].rate = rate;
+                speechSynthesis.speak(uttrEn[i]);
+                speechSynthesis.speak(uttrJp[i]);
+            }
+        }
+
+        function getRate()
+        {
+            var speedValue = document.getElementById("speed").value;
+            return (speedValue == "low") ? 0.7
+                : (speedValue == "normal") ? 1.0
+                : (speedValue == "high") ? 1.5
+                : 1.0;
+        }
+
+        function stop()
+        {
+            speechSynthesis.cancel();
+        }
     </script>
 {{end}}

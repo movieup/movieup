@@ -848,6 +848,141 @@ p.dictionary_description {
     transform: translate(0px, 0px) rotate(45deg);
 }
 
+/* 音声読み上げ（リスニング）機能 */
+.listening label {
+	position: relative;
+	color: #fff;
+}
+.listening label::after {
+	content: '';
+    position: absolute;
+    display: block;
+    top: 50%;
+    left: -17px;
+    width: 6px;
+    height: 6px;
+    margin: -5px 0 0;
+    border-bottom: 2px solid #D6687B;
+    border-right: 2px solid #D6687B;
+    -webkit-transform: translate(0, 0) rotate(45deg);
+    transform: translate(0px, 0px) rotate(45deg);
+}
+.listening input {
+	display: none;
+}
+.listening_play_wapper {
+	margin: 8px;
+	height: 0;
+	overflow: hidden;
+	transition: all 0.5s;
+}
+.listening_play {
+	border: 1px solid #D6687B;
+	border-radius: 2px;
+	padding: 16px;
+}
+.menu_listening {
+	cursor: pointer;
+}
+#menu_listening:checked ~ .listening_play_wapper {
+	height: 100%;
+	opacity: 1;
+}
+.menu_listening i {
+	font-size: 0.7rem;
+}
+
+.listening_speed {
+	overflow: hidden;
+	width: 300px;
+	margin: 1.0em auto;
+	text-align: center;
+}
+.listening_speed select {
+	width: 100%;
+	padding-right: 1em;
+	cursor: pointer;
+	text-indent: 0.01px;
+	text-overflow: ellipsis;
+	border: none;
+	outline: none;
+	background: transparent;
+	background-image: none;
+	box-shadow: none;
+	-webkit-appearance: none;
+	appearance: none;
+	font-size: 0.8rem;
+	margin: 0 16px;
+}
+.listening_speed select::-ms-expand {
+    display: none;
+}
+.listening_speed {
+	position: relative;
+	border: 1px solid #bbbbbb;
+	border-radius: 2px;
+	background: #ffffff;
+}
+.listening_speed::before {
+	position: absolute;
+	top: 0.8em;
+	right: 0.9em;
+	width: 0;
+	height: 0;
+	padding: 0;
+	content: '';
+	border-left: 6px solid transparent;
+	border-right: 6px solid transparent;
+	border-top: 6px solid #666666;
+	pointer-events: none;
+}
+.listening_speed select {
+	padding: 8px 38px 8px 8px;
+	color: #000;
+}
+
+.listening_play button {
+  display: inline-block;
+  padding: 0.5em 1.2em;
+  text-decoration: none;
+  color: #000;
+  border: solid 1px #eee;
+  border-radius: 3px;
+  transition: .4s;
+  font-size: 0.8rem;
+  background: #fff;
+  cursor: pointer;
+}
+
+.listening_play i {
+	font-size: 1.0rem;
+}
+
+.listening_play button:hover {
+	border: solid 1px #eee;
+}
+
+.listening_start {
+	display: grid;
+	gap: 8px;
+	grid-template-columns: 1fr;
+	padding: 0 16px;
+	margin-bottom: 16px;
+}
+
+.listening_stop {
+	display: grid;
+	grid-template-columns: 1fr;
+	padding: 0 16px;
+	margin-bottom: 16px;
+}
+
+.listening_alert p {
+	color: #fff;
+	margin: 0 0 8px;
+	font-size: 0.7rem;
+}
+
 /*
  * 当サイトについて
  */
@@ -1102,6 +1237,11 @@ footer ul {
 		width: 100%;
 		margin: 0;
 		box-sizing: border-box;
+	}
+
+	/* リスニング機能 */
+	.listening_start {
+		grid-template-columns: 1fr 1fr;
 	}
 
 	/* シーン詳細画面 */
