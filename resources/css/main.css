@@ -370,6 +370,12 @@ footer {
 	margin: 16px 16px 0 16px;
 }
 
+/* コンテンツ内部品 */
+.link_text_in_content {
+	color: #333 !important;
+	border-bottom: solid 1px #D6687B;
+}
+
 /* 記事一覧 */
 .top_news, .about {
 	margin-top: -48px;
